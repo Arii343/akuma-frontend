@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 const NavbarStyled = styled.nav`
-  position: relative;
-
   .navbar-button {
     display: flex;
     align-items: center;
@@ -25,7 +23,7 @@ const NavbarStyled = styled.nav`
     gap: ${(props) => props.theme.spacing.large};
     font-size: ${(props) => props.theme.font.size.large};
     position: absolute;
-    top: 50px;
+    top: 78px;
     left: 0;
     border-radius: 0 0 6px 6px;
   }
