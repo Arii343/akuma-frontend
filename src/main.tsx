@@ -7,7 +7,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme/theme";
 import GlobalStyle from "./styles/GlobalStyle/GlobalStyle";
 import { RouterProvider } from "react-router-dom";
-import appRouter from "./routers/appRouter";
+import appRouter from "./routers/appRouter/appRouter";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
