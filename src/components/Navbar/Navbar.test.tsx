@@ -18,10 +18,11 @@ describe("Given a Navbar component", () => {
 
   describe("When it renders", () => {
     test("Then it should show a burger menu button", () => {
-      const appRouter = createMemoryRouter(routes);
+      const router = createMemoryRouter(routes);
+
       render(
         <ThemeProvider theme={theme}>
-          <RouterProvider router={appRouter} />
+          <RouterProvider router={router} />
         </ThemeProvider>
       );
 
@@ -30,12 +31,12 @@ describe("Given a Navbar component", () => {
   });
   describe("When menu button is click", () => {
     test("Then it should show a className open", () => {
-      const appRouter = createMemoryRouter(routes);
+      const router = createMemoryRouter(routes);
       const expectedClassName = "open";
 
       render(
         <ThemeProvider theme={theme}>
-          <RouterProvider router={appRouter} />
+          <RouterProvider router={router} />
         </ThemeProvider>
       );
 
@@ -49,11 +50,11 @@ describe("Given a Navbar component", () => {
       expect(menu.className).toContain(expectedClassName);
     });
     test("Then it should show a link Home, Create and Login", () => {
-      const appRouter = createMemoryRouter(routes);
+      const router = createMemoryRouter(routes);
 
       render(
         <ThemeProvider theme={theme}>
-          <RouterProvider router={appRouter} />
+          <RouterProvider router={router} />
         </ThemeProvider>
       );
 
