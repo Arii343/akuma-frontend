@@ -15,6 +15,7 @@ const theme: DefaultTheme = {
     quaternary: "#f5f5f5",
     quinary: "#40a3ff",
     senary: "#bcbedc",
+    septendary: "#ffffff",
   },
 
   backgroundColor: {
@@ -26,6 +27,7 @@ const theme: DefaultTheme = {
     senary: "#00bba3",
     septendary: "#8492a6",
     octonary: "#adc0d2",
+    nonary: "#ffffff",
   },
 
   font: {

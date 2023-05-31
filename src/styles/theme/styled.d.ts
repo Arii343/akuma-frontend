@@ -9,6 +9,7 @@ declare module "styled-components" {
       quaternary: string;
       quinary: string;
       senary: string;
+      septendary: string;
     };
 
     backgroundColor: {
@@ -20,6 +21,7 @@ declare module "styled-components" {
       senary: string;
       septendary: string;
       octonary: string;
+      nonary: string;
     };
 
     font: {

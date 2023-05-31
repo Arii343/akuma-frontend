@@ -5,7 +5,7 @@ const HeaderStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: ${(props) => props.theme.spacing.medium};
+  padding: ${(props) => props.theme.spacing.large};
   position: relative;
 
   .logo {
