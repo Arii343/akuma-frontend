@@ -1,4 +1,7 @@
-import "@fontsource/overpass";
+import "@fontsource/overpass/500.css";
+import "@fontsource/overpass/600.css";
+import "@fontsource/overpass/700.css";
+import "@fontsource/overpass/800.css";
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
