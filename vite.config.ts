@@ -19,7 +19,6 @@ export default defineConfig({
         "**/*.test.{ts,tsx}",
         "**/types.ts",
         "**/*.d.ts",
-        "src/components/App/App.tsx",
         "src/styles/GlobalStyle/GlobalStyle.ts",
         "src/main.tsx",
         "src/store/index.ts",

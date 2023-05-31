@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html {
-  font-family: ${(props) => props.theme.font.fontFamily};
+  font-family: ${(props) => props.theme.font.fontFamily}, sans-serif;
 }
 
 body,
