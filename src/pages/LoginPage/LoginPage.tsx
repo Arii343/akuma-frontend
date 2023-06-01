@@ -1,4 +1,3 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
 import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): React.ReactElement => {
@@ -6,7 +5,6 @@ const LoginPage = (): React.ReactElement => {
     <>
       <LoginPageStyled className="login">
         <h1 className="login__title">Login</h1>
-        <LoginForm />
       </LoginPageStyled>
     </>
   );
