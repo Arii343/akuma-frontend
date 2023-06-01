@@ -41,10 +41,6 @@ const LoginFormStyled = styled.form`
     color: ${(props) => props.theme.color.septendary};
     font-size: ${(props) => props.theme.font.size.small};
     margin: 20px 0;
-
-    :disabled {
-      background-color: lightsteelblue;
-    }
   }
 `;
 

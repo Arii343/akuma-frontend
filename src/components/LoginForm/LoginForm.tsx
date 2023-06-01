@@ -1,12 +1,16 @@
 import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
 
+interface LoginFormData {
+  email: string;
+  password: string;
+}
 interface LoginFormProps {
-  handleOnSubmit: () => void;
+  handleOnSubmit: (formData: LoginFormData) => void;
 }
 
 const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
-  const [loginForm, setLoginForm] = useState({
+  const [loginForm, setLoginForm] = useState<LoginFormData>({
     email: "",
     password: "",
   });
@@ -22,16 +26,13 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
     }));
   };
 
-  const handleOnClick = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleOnSubmit();
-    setLoginForm(loginForm);
+    handleOnSubmit(loginForm);
   };
 
-  const isReady = loginForm.email !== "" && loginForm.password !== "";
-
   return (
-    <LoginFormStyled className="login-form" onSubmit={handleOnClick}>
+    <LoginFormStyled className="login-form" onSubmit={onSubmit}>
       <label htmlFor="email" className="login-form__label">
         <img src="./img/email.svg" alt="email icon" width={28} height={28} />
         <input
@@ -42,6 +43,7 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
           placeholder="Email"
           className="login-form__input"
           aria-label="email input"
+          required
         />
       </label>
       <label htmlFor="password" className="login-form__label">
@@ -59,14 +61,10 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
           placeholder="Password"
           className="login-form__input"
           aria-label="password input"
+          required
         />
       </label>
-      <button
-        type="submit"
-        className="login-form__submit-button"
-        disabled={!isReady}
-        onClick={handleOnSubmit}
-      >
+      <button type="submit" className="login-form__submit-button">
         Login
       </button>
     </LoginFormStyled>
