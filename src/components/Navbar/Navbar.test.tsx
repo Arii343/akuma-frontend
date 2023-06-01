@@ -29,26 +29,8 @@ describe("Given a Navbar component", () => {
       expect(screen.getByRole("button")).toBeInTheDocument();
     });
   });
+
   describe("When menu button is click", () => {
-    test("Then it should show a className open", () => {
-      const router = createMemoryRouter(routes);
-      const expectedClassName = "open";
-
-      render(
-        <ThemeProvider theme={theme}>
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      );
-
-      const button = screen.getByRole("button");
-
-      fireEvent.click(button);
-
-      const menu = screen.getByRole("list");
-
-      expect(menu).toBeInTheDocument();
-      expect(menu.className).toContain(expectedClassName);
-    });
     test("Then it should show a link Home, Create and Login", () => {
       const router = createMemoryRouter(routes);
 

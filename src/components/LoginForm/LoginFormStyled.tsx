@@ -17,6 +17,10 @@ const LoginFormStyled = styled.form`
     padding: ${(props) => props.theme.spacing.small};
     color: ${(props) => props.theme.color.secondary};
     font-weight: ${(props) => props.theme.font.weight.semiBold};
+
+    :focus-within {
+      outline: rgb(18, 172, 253) auto 1px;
+    }
   }
 
   .login-form__input {
