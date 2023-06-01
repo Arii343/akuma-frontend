@@ -1,7 +1,11 @@
 import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
 
-const LoginForm = (): React.ReactElement => {
+interface LoginFormProps {
+  handleOnSubmit: () => void;
+}
+
+const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
   const [loginForm, setLoginForm] = useState({
     email: "",
     password: "",
@@ -18,8 +22,16 @@ const LoginForm = (): React.ReactElement => {
     }));
   };
 
+  const handleOnClick = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    handleOnSubmit();
+    setLoginForm(loginForm);
+  };
+
+  const isReady = loginForm.email !== "" && loginForm.password !== "";
+
   return (
-    <LoginFormStyled className="login-form">
+    <LoginFormStyled className="login-form" onSubmit={handleOnClick}>
       <label htmlFor="email" className="login-form__label">
         <img src="./img/email.svg" alt="email icon" width={28} height={28} />
         <input
@@ -49,7 +61,12 @@ const LoginForm = (): React.ReactElement => {
           aria-label="password input"
         />
       </label>
-      <button type="submit" className="login-form__submit-button">
+      <button
+        type="submit"
+        className="login-form__submit-button"
+        disabled={!isReady}
+        onClick={handleOnSubmit}
+      >
         Login
       </button>
     </LoginFormStyled>
