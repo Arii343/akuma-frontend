@@ -1,6 +1,23 @@
+import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
 
 const LoginForm = (): React.ReactElement => {
+  const [loginForm, setLoginForm] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleLoginFormChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value, name } = event.target;
+
+    setLoginForm((loginForm) => ({
+      ...loginForm,
+      [name]: value,
+    }));
+  };
+
   return (
     <LoginFormStyled className="login-form">
       <label htmlFor="email" className="login-form__label">
@@ -8,6 +25,8 @@ const LoginForm = (): React.ReactElement => {
         <input
           name="email"
           type="email"
+          value={loginForm.email}
+          onChange={handleLoginFormChange}
           placeholder="Email"
           className="login-form__input"
           aria-label="email input"
@@ -23,6 +42,8 @@ const LoginForm = (): React.ReactElement => {
         <input
           name="password"
           type="password"
+          value={loginForm.password}
+          onChange={handleLoginFormChange}
           placeholder="Password"
           className="login-form__input"
           aria-label="password input"
