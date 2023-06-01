@@ -1,28 +1,11 @@
-import {
-  RouteObject,
-  RouterProvider,
-  createMemoryRouter,
-} from "react-router-dom";
-import { render, screen } from "@testing-library/react";
-import { ThemeProvider } from "styled-components";
-import theme from "../../styles/theme/theme";
+import { screen } from "@testing-library/react";
 import Layout from "./Layout";
+import renderWithProviders from "../../utils/testUtils";
 
 describe("Given a Leyout component", () => {
   describe("When it reders", () => {
-    const routes: RouteObject[] = [
-      {
-        path: "/",
-        element: <Layout />,
-      },
-    ];
-    const router = createMemoryRouter(routes);
     test("Then it should show a Header component", () => {
-      render(
-        <ThemeProvider theme={theme}>
-          <RouterProvider router={router} />
-        </ThemeProvider>
-      );
+      renderWithProviders(<Layout />);
 
       const header = screen.getByRole("banner");
 
