@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
+import { paths } from "../../routers/paths/paths";
 
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ const Navbar = (): React.ReactElement => {
           <NavLink to={"/create"}>Create</NavLink>
         </li>
         <li className="navbar-list__item">
-          <NavLink to={"/login"}>Login</NavLink>
+          <NavLink to={paths.login}>Login</NavLink>
         </li>
       </ul>
     </NavbarStyled>
