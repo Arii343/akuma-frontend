@@ -2,12 +2,21 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
+import { logoutUserActionCreator } from "../../store/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../../store";
 
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+  const isLogged = useAppSelector((state) => state.user.isLogged);
+
+  const dispatch = useAppDispatch();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleClickLogout = () => {
+    dispatch(logoutUserActionCreator());
   };
 
   return (
@@ -19,12 +28,25 @@ const Navbar = (): React.ReactElement => {
         <li className="navbar-list__item">
           <NavLink to={"/"}>Home</NavLink>
         </li>
-        <li className="navbar-list__item">
-          <NavLink to={"/create"}>Create</NavLink>
-        </li>
-        <li className="navbar-list__item">
-          <NavLink to={paths.login}>Login</NavLink>
-        </li>
+        {isLogged ? (
+          <>
+            <li className="navbar-list__item">
+              <NavLink to={"/create"}>Create</NavLink>
+            </li>
+            <li className="navbar-list__item">
+              <button
+                onClick={handleClickLogout}
+                className="navbar-list__button"
+              >
+                Logout
+              </button>
+            </li>
+          </>
+        ) : (
+          <li className="navbar-list__item">
+            <NavLink to={paths.login}>Login</NavLink>
+          </li>
+        )}
       </ul>
     </NavbarStyled>
   );
