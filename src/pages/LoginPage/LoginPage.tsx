@@ -1,18 +1,28 @@
 import LoginForm from "../../components/LoginForm/LoginForm";
 import useToken from "../../hooks/useToken/useToken";
 import useUser from "../../hooks/useUser/useUser";
-import { UserCredentials } from "../../store/user/types";
+import { useAppDispatch } from "../../store";
+import { UserCredentials, UserTokenStructure } from "../../store/user/types";
+import { loginUserActionCreator } from "../../store/user/userSlice";
 import LoginPageStyled from "./LoginPageStyled";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
   const { getTokenData } = useToken();
+  const dispatch = useAppDispatch();
 
   const handleOnSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
 
     if (token) {
-      await getTokenData(token);
+      const userData = await getTokenData(token);
+
+      dispatch(
+        loginUserActionCreator({
+          ...userData,
+          token: token,
+        } as UserTokenStructure)
+      );
     }
   };
 
