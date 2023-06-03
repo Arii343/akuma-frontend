@@ -1,11 +1,11 @@
 import Header from "./Header";
 import { screen } from "@testing-library/react";
-import renderWithProviders from "../../utils/testUtils";
+import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 
 describe("Given a Header component", () => {
   describe("When it renders", () => {
     test("Then it should show a logo 'あKUMA'", () => {
-      renderWithProviders(<Header />);
+      renderWithProviders(wrapWithRouter(<Header />));
 
       const logo = screen.getByRole("img", { name: "akuma logo" });
 
@@ -13,7 +13,7 @@ describe("Given a Header component", () => {
     });
 
     test("Then it should show a button menu burger", () => {
-      renderWithProviders(<Header />);
+      renderWithProviders(wrapWithRouter(<Header />));
 
       const button = screen.getByRole("button");
 
