@@ -9,7 +9,8 @@ describe("Given a Navbar component", () => {
     test("Then it should show a burger menu button", () => {
       renderWithProviders(wrapWithRouter(<Navbar />));
 
-      expect(screen.getByRole("button")).toBeInTheDocument();
+      const burgerMenuButton = screen.getByRole("button");
+      expect(burgerMenuButton).toBeInTheDocument();
     });
   });
 
@@ -18,9 +19,9 @@ describe("Given a Navbar component", () => {
       test("Then it should show a link Home and Login", async () => {
         renderWithProviders(wrapWithRouter(<Navbar />));
 
-        const button = screen.getByRole("button");
+        const burgerMenuButton = screen.getByRole("button");
 
-        await userEvent.click(button);
+        await userEvent.click(burgerMenuButton);
 
         const homelink = screen.getByRole("link", { name: "Home" });
         const loginlink = screen.getByRole("link", { name: "Login" });
@@ -65,6 +66,24 @@ describe("Given a Navbar component", () => {
         const loginlink = screen.getByText("Login");
 
         expect(loginlink).toBeInTheDocument();
+      });
+    });
+
+    describe("When the burger menu is open", () => {
+      test("Then can be closed by the user clicking outside or to a menu item. Create and Home link should not be visible", async () => {
+        renderWithProviders(wrapWithRouter(<Navbar />));
+
+        const burgerMenuButton = screen.getByRole("button");
+
+        await userEvent.click(burgerMenuButton);
+
+        const loginlink = screen.getByRole("link", { name: "Login" });
+        const homelink = screen.getByRole("link", { name: "Home" });
+
+        await userEvent.click(loginlink);
+
+        expect(homelink).not.toBeVisible();
+        expect(loginlink).not.toBeVisible();
       });
     });
   });
