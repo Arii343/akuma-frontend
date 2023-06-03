@@ -28,6 +28,7 @@ const theme: DefaultTheme = {
     septendary: "#8492a6",
     octonary: "#adc0d2",
     nonary: "#ffffff",
+    denary: "#1a66d2",
   },
 
   font: {

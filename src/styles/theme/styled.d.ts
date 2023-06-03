@@ -22,6 +22,7 @@ declare module "styled-components" {
       septendary: string;
       octonary: string;
       nonary: string;
+      denary: string;
     };
 
     font: {
