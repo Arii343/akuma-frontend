@@ -5,11 +5,13 @@ import { useAppDispatch } from "../../store";
 import { UserCredentials, UserTokenStructure } from "../../store/user/types";
 import { loginUserActionCreator } from "../../store/user/userSlice";
 import LoginPageStyled from "./LoginPageStyled";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = (): React.ReactElement => {
   const { getUserToken } = useUser();
   const { getTokenData } = useToken();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleOnSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
@@ -23,6 +25,7 @@ const LoginPage = (): React.ReactElement => {
           token: token,
         } as UserTokenStructure)
       );
+      navigate("/");
     }
   };
 

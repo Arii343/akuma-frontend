@@ -1,4 +1,5 @@
 import {
+  UserCredentials,
   UserData,
   UserStateStructure,
   UserTokenStructure,
@@ -20,4 +21,9 @@ export const tokenMock =
 
 export const userDataMock: UserData = {
   id: "6479017b2195fc503c51333b",
+};
+
+export const validUserCredentialsMock: UserCredentials = {
+  email: "admin@admin.net",
+  password: "admin",
 };
