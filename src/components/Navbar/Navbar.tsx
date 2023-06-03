@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
@@ -8,6 +8,20 @@ import { useAppDispatch, useAppSelector } from "../../store";
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
   const isLogged = useAppSelector((state) => state.user.isLogged);
+
+  useEffect(() => {
+    const handler = () => {
+      if (isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [isOpen]);
 
   const dispatch = useAppDispatch();
 
