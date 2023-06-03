@@ -28,6 +28,12 @@ const NavbarStyled = styled.nav`
     border-radius: 0 0 6px 6px;
   }
 
+  .navbar-list__button {
+    background-color: transparent;
+    color: ${(props) => props.theme.color.senary};
+    font-size: ${(props) => props.theme.font.size.large};
+  }
+
   .close {
     opacity: 0;
     visibility: hidden;
