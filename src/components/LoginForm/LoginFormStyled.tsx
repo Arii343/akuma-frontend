@@ -35,7 +35,7 @@ const LoginFormStyled = styled.form`
   }
 
   .login-form__submit-button {
-    background-color: ${(props) => props.theme.backgroundColor.quaternary};
+    background-color: ${(props) => props.theme.backgroundColor.denary};
     height: 48px;
     border-radius: 6px;
     color: ${(props) => props.theme.color.septendary};
