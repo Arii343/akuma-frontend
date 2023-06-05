@@ -1,4 +1,5 @@
 import { useAppSelector } from "../../store";
+import AnimeCard from "../AnimeCard /AnimeCard";
 import AnimeListStyled from "./AnimesListStyled";
 
 const AnimesList = (): React.ReactElement => {
@@ -7,7 +8,11 @@ const AnimesList = (): React.ReactElement => {
   return (
     <AnimeListStyled>
       {animes.map((anime) => (
-        <h1 key={anime.id}>{anime.englishTitle}</h1>
+        <AnimeCard
+          imageUrl={anime.image}
+          title={anime.englishTitle}
+          key={anime.id}
+        />
       ))}
     </AnimeListStyled>
   );
