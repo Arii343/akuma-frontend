@@ -1,8 +1,8 @@
 import { useAppSelector } from "../../store";
 import AnimeCard from "../AnimeCard /AnimeCard";
-import AnimeListStyled from "./AnimesListStyled";
+import AnimeListStyled from "./AnimeListStyled";
 
-const AnimesList = (): React.ReactElement => {
+const AnimeList = (): React.ReactElement => {
   const animes = useAppSelector((state) => state.animes.animes);
 
   return (
@@ -18,4 +18,4 @@ const AnimesList = (): React.ReactElement => {
   );
 };
 
-export default AnimesList;
+export default AnimeList;
