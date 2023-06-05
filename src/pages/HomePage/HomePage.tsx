@@ -3,7 +3,7 @@ import { useAppDispatch } from "../../store";
 import HomePageStyled from "./HomePageStyled";
 import { loadAnimesActionCreator } from "../../store/animes/animesSlice";
 import { animesMock } from "../../mocks/animes/animesMocks";
-import AnimesList from "../../components/AnimesList/AnimesList";
+import AnimeList from "../../components/AnimeList/AnimeList";
 
 const HomePage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ const HomePage = (): React.ReactElement => {
   return (
     <HomePageStyled className="home-page">
       <h1 className="home-page__title">Anime</h1>
-      <AnimesList />
+      <AnimeList />
     </HomePageStyled>
   );
 };

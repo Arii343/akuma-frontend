@@ -57,7 +57,7 @@
 - Renders a loginForm
 - Renders a createAnimeForm
 - Renders a editAnimeForm
-- Renders a animesList component
+- Renders a AnimeList component
 - Renders a animesDetail component
 - Renders a notFound page
 
@@ -73,7 +73,7 @@
   - text: "create" / "save"
   - actionOnClick: handleSubmit
 
-### AnimesList
+### AnimeList
 
 - Receives a collection of Animes
 - Renders as many AnimeCard as Animes are in the collection

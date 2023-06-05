@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import { animesMock } from "../../mocks/animes/animesMocks";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
-import AnimesList from "./AnimesList";
+import AnimeList from "./AnimeList";
 
 describe("Given a AnimeList component", () => {
   describe("When it renders", () => {
@@ -12,7 +12,7 @@ describe("Given a AnimeList component", () => {
         },
       };
 
-      renderWithProviders(wrapWithRouter(<AnimesList />), preloadedState);
+      renderWithProviders(wrapWithRouter(<AnimeList />), preloadedState);
 
       const expectedAnimeTitle = animesMock[0].englishTitle;
 
