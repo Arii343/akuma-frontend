@@ -5,13 +5,13 @@ import { vi } from "vitest";
 describe("Given a Button component", () => {
   describe("When it renders", () => {
     test("Then it should show a button with the text 'delete'", () => {
-      const actionOnClick = vi.fn();
+      const onClick = vi.fn();
       const className = "button";
       const type = "button";
       const buttonText = "delete";
 
       render(
-        <Button actionOnClick={actionOnClick} className={className} type={type}>
+        <Button onClick={onClick} className={className} type={type}>
           {buttonText}
         </Button>
       );
