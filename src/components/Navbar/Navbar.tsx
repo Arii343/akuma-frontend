@@ -4,6 +4,7 @@ import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
+import Button from "../Button/Button";
 
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
@@ -48,12 +49,12 @@ const Navbar = (): React.ReactElement => {
               <NavLink to={"/create"}>Create</NavLink>
             </li>
             <li className="navbar-list__item">
-              <button
+              <Button
                 onClick={handleClickLogout}
                 className="navbar-list__button"
               >
                 Logout
-              </button>
+              </Button>
             </li>
           </>
         ) : (

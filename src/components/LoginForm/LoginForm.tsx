@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LoginFormStyled from "./LoginFormStyled";
+import Button from "../Button/Button";
 
 interface LoginFormData {
   email: string;
@@ -64,9 +65,9 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
           required
         />
       </label>
-      <button type="submit" className="login-form__submit-button">
+      <Button type="submit" className="login-form__submit-button">
         Login
-      </button>
+      </Button>
     </LoginFormStyled>
   );
 };
