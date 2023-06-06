@@ -1,132 +1,51 @@
-# Anime App
+# あ kuma
 
-## Data layer
+あ kuma is an anime series and movies application that facilitates the experience of finding an anime that meets your expectations. With a catalog of more than 3800 animes.
 
-### Data
+## Table of Contents
 
-- Collection of Animes
-  - Anime:
-    - id: number
-    - englishTitle: string
-    - japaneseTitle: string
-    - releaseYear: number
-    - rating: string
-    - demographics: array["Shounen","Seinen"]
-    - genres: array["Action","Drama"]
-    - image: string
-    - score: number
-    - rank: number
-    - popularity: number
-    - type: string
-    - source: string
-    - episodes: number
-    - status: string
-    - duration: string
-    - synopsis: string
+- [Screenshots]()
+- [Features](#features)
+- [Technologies](#technologies-used)
+- [Setup](#setup)
+- [Demo](#available-commands)
 
-### Modifications
+## Screenshots
 
-- createAnime()
-- removeAnime()
-- updateAnime()
-- loadAnimes()
+## Features
 
-## Components
+User view:
 
-### Store
+- Show anime list in home page.
+- Filter anime list by genres.
+- Show anime details.
 
-#### State
+Admin view:
 
-- Collection of Animes
+- Delete anime.
+- Edit anime.
+- Create anime.
 
-#### AnimesReducer
+## Technologies
 
-- createAnime(anime)
-- removeAnime(id)
-- updateAnime(anime)
-- loadAnimes()
-- loadAnime(id)
+- React
+- Redux
+- React Router
+- Axios
+- Vite
+- TypeScript
+- Styled Components
+- React Testing Library
+- Jest
 
-### App
+## Setup
 
-- Receives an external collection of Animes
-- Receives a collection of Animes
-- Receives dispatch()
-- Shows the header with a logo
-- Shows the navbar
-- Renders a loginForm
-- Renders a createAnimeForm
-- Renders a editAnimeForm
-- Renders a AnimeList component
-- Renders a animesDetail component
-- Renders a notFound page
+To get started with the あ kuma application, follow these steps:
 
-### AnimeForm
+1. Clone the repository to your local machine.
+2. Install the dependencies by running the command `npm install`.
+3. Start the frontend application locally by running the command `npm run dev`.
 
-- State:
-  - Anime
-- handleSubmit()
-- Receives dispatch()
-- Receives an optional Anime to update
-- Shows an input text for each property of the Anime
-- Renders a Button component
-  - text: "create" / "save"
-  - actionOnClick: handleSubmit
+## Demo
 
-### AnimeList
-
-- Receives a collection of Animes
-- Renders as many AnimeCard as Animes are in the collection
-
-### AnimeCard
-
-- Receives a Anime
-- Receives dispatch()
-- handleClick()
-- Shows the Anime's name inside a heading
-- Shows the Anime's image
-- If role Admin:
-  -Renders a Button with:
-  - icon: "edit"
-  - actionOnClick: handleClick
-
-### Button
-
-- Receives a text
-- Receives an action on click
-- Shows a button with the received text
-- Calls the received action when the button is clicked
-
-### Feedback
-
-- Renders the model with positive or negative feedback
-
-### Pages
-
-## LoginPage
-
--Renders LoginForm
--Receives a dispatch
-
-## AnimesPage
-
-- Receives dispatch
-- call getAnimes() from useAnimes custom hook and dispatch loadRoutesActionCreator()
-- Receives a collection of animes
-- Render animeList
-
-## DetailsPage
-
-- Show edit button and delete button
-- Call getAnimeById from useAnimes custoom hook
-- Shows English title, Japanese title, release year, rating, demographics, genres, image, score, rank, popularity, type, source, episodes, status, duration, synopsis
-
-## CreateFormPage
-
-- Renders AnimeForm component
-- Receives dispatch
-
-## EditFormPage
-
-- Renders AnimeForm component
-- Receives dispatch
+Check the demo [HERE](https://ariadna-canizares-final-project-front.netlify.app/)
