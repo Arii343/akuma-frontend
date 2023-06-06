@@ -12,14 +12,14 @@ const AnimeCardSkeletonStyled = styled.article`
     border-radius: 6px;
     padding-top: 100%;
     position: relative;
-    background-color: #adc0d2;
+    background-color: ${(props) => props.theme.backgroundColor.octonary};
   }
 
   .anime-card-skeleton__title {
     width: 100px;
     height: 17px;
     border-radius: 5px;
-    background-color: #adc0d2;
+    background-color: ${(props) => props.theme.backgroundColor.octonary};
   }
 `;
 

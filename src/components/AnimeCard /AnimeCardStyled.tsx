@@ -12,6 +12,7 @@ const AnimeCardStyled = styled.article`
     box-shadow: 0 14px 30px rgba(103, 132, 187, 0.15),
       0 4px 4px rgba(103, 132, 187, 0.05);
     object-fit: cover;
+    background-color: ${(props) => props.theme.backgroundColor.octonary};
   }
 
   .anime-card__title {
