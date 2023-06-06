@@ -2,15 +2,19 @@ import { useEffect } from "react";
 import { useAppDispatch } from "../../store";
 import HomePageStyled from "./HomePageStyled";
 import { loadAnimesActionCreator } from "../../store/animes/animesSlice";
-import { animesMock } from "../../mocks/animes/animesMocks";
 import AnimeList from "../../components/AnimeList/AnimeList";
+import useAnimes from "../../hooks/useAnimes/useAnimes";
 
 const HomePage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
+  const { getAnimes } = useAnimes();
 
   useEffect(() => {
-    dispatch(loadAnimesActionCreator(animesMock));
-  }, [dispatch]);
+    (async () => {
+      const animes = await getAnimes();
+      dispatch(loadAnimesActionCreator(animes));
+    })();
+  }, [dispatch, getAnimes]);
 
   return (
     <HomePageStyled className="home-page">
