@@ -11,9 +11,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const useAnimes = () => {
   const dispatch = useAppDispatch();
-  const getAnimes = useCallback(async (): Promise<
-    AnimeStructure[] | undefined
-  > => {
+  const getAnimes = useCallback(async (): Promise<AnimeStructure[]> => {
     dispatch(showLoadingActionCreator());
 
     const response = await axios.get<{ animes: AnimeStructure[] }>(
