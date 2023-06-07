@@ -8,14 +8,17 @@ import theme from "./styles/theme/theme";
 import GlobalStyle from "./styles/GlobalStyle/GlobalStyle";
 import { RouterProvider } from "react-router-dom";
 import appRouter from "./routers/appRouter/appRouter";
+import { SnackbarProvider } from "notistack";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <GlobalStyle />
-        <RouterProvider router={appRouter} />
-      </Provider>
-    </ThemeProvider>
+    <SnackbarProvider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <GlobalStyle />
+          <RouterProvider router={appRouter} />
+        </Provider>
+      </ThemeProvider>
+    </SnackbarProvider>
   </React.StrictMode>
 );
