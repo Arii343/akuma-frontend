@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import NavbarStyled from "./NavbarStyled";
 import { paths } from "../../routers/paths/paths";
@@ -9,20 +9,6 @@ import Button from "../Button/Button";
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
   const isLogged = useAppSelector((state) => state.user.isLogged);
-
-  useEffect(() => {
-    const handler = () => {
-      if (isOpen) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handler);
-
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  }, [isOpen]);
 
   const dispatch = useAppDispatch();
 
@@ -36,10 +22,27 @@ const Navbar = (): React.ReactElement => {
 
   return (
     <NavbarStyled>
-      <button className="navbar-button" onClick={toggleMenu}>
+      <Button className="navbar-button" onClick={toggleMenu}>
         <img src="./img/burger.svg" alt="burger icon" width={36} height={36} />
-      </button>
-      <ul className={`navbar-list ${isOpen ? "open" : "close"}`}>
+      </Button>
+      {isOpen && (
+        <div
+          className="navbar-toggle"
+          onClick={toggleMenu}
+          tabIndex={0}
+          role="button"
+          onKeyUp={toggleMenu}
+        ></div>
+      )}
+      <ul
+        className={`navbar-list ${
+          isOpen ? "navbar-list--open" : "navbar-list--close"
+        }`}
+        onClick={toggleMenu}
+        tabIndex={0}
+        role="menu"
+        onKeyUp={toggleMenu}
+      >
         <li className="navbar-list__item">
           <NavLink to={"/"}>Home</NavLink>
         </li>
