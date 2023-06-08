@@ -6,22 +6,32 @@ import {
   hideLoadingActionCreator,
   showLoadingActionCreator,
 } from "../../store/ui/uiSlice";
+import { useSnackbar } from "notistack";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const useAnimes = () => {
   const dispatch = useAppDispatch();
-  const getAnimes = useCallback(async (): Promise<AnimeStructure[]> => {
-    dispatch(showLoadingActionCreator());
+  const { enqueueSnackbar } = useSnackbar();
 
-    const response = await axios.get<{ animes: AnimeStructure[] }>(
-      `${apiUrl}anime`
-    );
+  const getAnimes = useCallback(async (): Promise<
+    AnimeStructure[] | undefined
+  > => {
+    try {
+      dispatch(showLoadingActionCreator());
+      const response = await axios.get<{ animes: AnimeStructure[] }>(
+        `${apiUrl}anime`
+      );
 
-    dispatch(hideLoadingActionCreator());
+      dispatch(hideLoadingActionCreator());
 
-    return response.data.animes;
-  }, [dispatch]);
+      return response.data.animes;
+    } catch (error) {
+      enqueueSnackbar("An error has ocurred while loading anime", {
+        variant: "error",
+      });
+    }
+  }, [dispatch, enqueueSnackbar]);
 
   return {
     getAnimes,
