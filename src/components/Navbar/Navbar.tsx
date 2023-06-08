@@ -5,10 +5,12 @@ import { paths } from "../../routers/paths/paths";
 import { logoutUserActionCreator } from "../../store/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../store";
 import Button from "../Button/Button";
+import { useSnackbar } from "notistack";
 
 const Navbar = (): React.ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
   const isLogged = useAppSelector((state) => state.user.isLogged);
+  const { enqueueSnackbar } = useSnackbar();
 
   const dispatch = useAppDispatch();
 
@@ -18,6 +20,7 @@ const Navbar = (): React.ReactElement => {
 
   const handleClickLogout = () => {
     dispatch(logoutUserActionCreator());
+    enqueueSnackbar("You have successfully logged out", { variant: "info" });
   };
 
   return (
