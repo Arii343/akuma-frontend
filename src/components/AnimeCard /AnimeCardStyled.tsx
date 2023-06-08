@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const AnimeCardStyled = styled.article`
   display: flex;
-  align-items: center;
   flex-direction: column;
   gap: 10px;
 
