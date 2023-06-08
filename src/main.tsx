@@ -12,7 +12,7 @@ import { SnackbarProvider } from "notistack";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <SnackbarProvider>
+    <SnackbarProvider autoHideDuration={2500}>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <GlobalStyle />
