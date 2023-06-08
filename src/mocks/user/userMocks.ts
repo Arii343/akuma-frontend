@@ -34,3 +34,8 @@ export const validUserCredentialsMock: UserCredentials = {
   email: "admin@admin.net",
   password: "admin",
 };
+
+export const invalidUserCredentialsMock: UserCredentials = {
+  email: "admin@admin.com",
+  password: "admin123",
+};

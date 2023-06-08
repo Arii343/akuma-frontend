@@ -12,7 +12,10 @@ const HomePage = (): React.ReactElement => {
   useEffect(() => {
     (async () => {
       const animes = await getAnimes();
-      dispatch(loadAnimesActionCreator(animes));
+
+      if (animes) {
+        dispatch(loadAnimesActionCreator(animes));
+      }
     })();
   }, [dispatch, getAnimes]);
 
