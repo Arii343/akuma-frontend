@@ -6,7 +6,7 @@ import AnimeListStyled from "./AnimeListStyled";
 
 const AnimeList = (): React.ReactElement => {
   const animes = useAppSelector((state) => state.animes.animes);
-  const isLoading = useAppSelector((state) => state.ui.isLoading);
+  const showSkeleton = useAppSelector((state) => state.ui.showSkeleton);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const dispatch = useAppDispatch();
 
@@ -16,7 +16,7 @@ const AnimeList = (): React.ReactElement => {
 
   return (
     <AnimeListStyled>
-      {isLoading
+      {showSkeleton
         ? Array.from({ length: 10 }).map((_element, index) => (
             <AnimeCardSkeleton key={index} />
           ))
