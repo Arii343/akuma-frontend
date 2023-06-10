@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useAnimes from "./useAnimes";
-import { animesMock } from "../../mocks/animes/animesMocks";
+import { animeMock, animesMock } from "../../mocks/animes/animesMocks";
 import { wrapWithStore } from "../../utils/testUtils";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
@@ -46,6 +46,41 @@ describe("Given a useAnimes custom hook", () => {
         "An error has ocurred while loading anime",
         { variant: "error" }
       );
+    });
+  });
+
+  describe("When deleteAnime function is called with an existing anime id", () => {
+    test("Then it should return 200", async () => {
+      const expectedStatus = 200;
+      const animeId = animeMock.id;
+
+      const {
+        result: {
+          current: { deleteAnime },
+        },
+      } = renderHook(() => useAnimes(), { wrapper: wrapWithStore });
+
+      const status = await deleteAnime(animeId);
+
+      expect(status).toStrictEqual(expectedStatus);
+    });
+  });
+
+  describe("When deleteAnime function is called with a non existing anime id", () => {
+    test("Then it should return undefined", async () => {
+      server.resetHandlers(...errorHandlers);
+      const expectedStatus = undefined;
+      const animeId = animeMock.id;
+
+      const {
+        result: {
+          current: { deleteAnime },
+        },
+      } = renderHook(() => useAnimes(), { wrapper: wrapWithStore });
+
+      const status = await deleteAnime(animeId);
+
+      expect(status).toStrictEqual(expectedStatus);
     });
   });
 });
