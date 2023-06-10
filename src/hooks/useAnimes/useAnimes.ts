@@ -36,28 +36,36 @@ const useAnimes = () => {
     }
   }, [dispatch, enqueueSnackbar]);
 
-  const deleteAnime = async (id: string) => {
-    try {
-      const configuration = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+  const deleteAnime = useCallback(
+    async (id: string) => {
+      try {
+        const configuration = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
 
-      dispatch(showSpinnerActionCreator());
+        dispatch(showSpinnerActionCreator());
 
-      const response = await axios.delete(
-        `${apiUrl}anime/${id}`,
-        configuration
-      );
+        const response = await axios.delete(
+          `${apiUrl}anime/${id}`,
+          configuration
+        );
 
-      dispatch(hideSpinnerActionCreator());
-
-      return response.status;
-    } catch (error) {
-      dispatch(hideSpinnerActionCreator());
-    }
-  };
+        dispatch(hideSpinnerActionCreator());
+        enqueueSnackbar("Anime deleted", {
+          variant: "success",
+        });
+        return response.status;
+      } catch (error) {
+        dispatch(hideSpinnerActionCreator());
+        enqueueSnackbar("Could not delete the anime", {
+          variant: "error",
+        });
+      }
+    },
+    [dispatch, enqueueSnackbar, token]
+  );
 
   return {
     getAnimes,
