@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import Navbar from "./Navbar";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import { loggedInUserMock } from "../../mocks/user/userMocks";
+import { RouterProvider, createMemoryRouter } from "react-router-dom";
 
 describe("Given a Navbar component", () => {
   describe("When it renders", () => {
@@ -71,7 +72,23 @@ describe("Given a Navbar component", () => {
 
     describe("When the burger menu is open", () => {
       test("Then can be closed by the user clicking outside or to a menu item. Create and Home link should not be visible", async () => {
-        renderWithProviders(wrapWithRouter(<Navbar />));
+        const routes = [
+          {
+            path: "/",
+            element: <Navbar />,
+          },
+          {
+            path: "/login",
+            element: <Navbar />,
+          },
+        ];
+
+        const router = createMemoryRouter(routes, {
+          initialEntries: ["/"],
+          initialIndex: 0,
+        });
+
+        renderWithProviders(<RouterProvider router={router} />);
 
         const burgerMenuButton = screen.getByRole("button");
 

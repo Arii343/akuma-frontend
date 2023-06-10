@@ -1,3 +1,4 @@
 export interface UiStateStructure {
-  isLoading: boolean;
+  showSkeleton: boolean;
+  showSpinner: boolean;
 }

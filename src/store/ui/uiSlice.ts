@@ -2,22 +2,37 @@ import { createSlice } from "@reduxjs/toolkit";
 import { UiStateStructure } from "./types";
 
 const initialUiState: UiStateStructure = {
-  isLoading: false,
+  showSkeleton: false,
+  showSpinner: false,
 };
 
 const uiSlice = createSlice({
   name: "ui",
   initialState: initialUiState,
   reducers: {
-    showLoading: () => ({
-      isLoading: true,
+    showSkeleton: (currentState: UiStateStructure) => ({
+      ...currentState,
+      showSkeleton: true,
     }),
-    hideLoading: () => ({
-      isLoading: false,
+    hideSkeleton: (currentState: UiStateStructure) => ({
+      ...currentState,
+      showSkeleton: false,
+    }),
+    showSpinner: (currentState: UiStateStructure) => ({
+      ...currentState,
+      showSpinner: true,
+    }),
+    hideSpinner: (currentState: UiStateStructure) => ({
+      ...currentState,
+      showSpinner: false,
     }),
   },
 });
 
-export const { showLoading: showLoadingActionCreator } = uiSlice.actions;
-export const { hideLoading: hideLoadingActionCreator } = uiSlice.actions;
+export const {
+  showSkeleton: showSkeletonActionCreator,
+  hideSkeleton: hideSkeltonActionCreator,
+  showSpinner: showSpinnerActionCreator,
+  hideSpinner: hideSpinnerActionCreator,
+} = uiSlice.actions;
 export const uiReducer = uiSlice.reducer;
