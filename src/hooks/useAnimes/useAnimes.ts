@@ -3,8 +3,8 @@ import { useCallback } from "react";
 import { AnimeStructure } from "../../store/animes/types";
 import { useAppDispatch } from "../../store";
 import {
-  hideLoadingActionCreator,
-  showLoadingActionCreator,
+  hideSkeltonActionCreator,
+  showSkeletonActionCreator,
 } from "../../store/ui/uiSlice";
 import { useSnackbar } from "notistack";
 
@@ -18,12 +18,12 @@ const useAnimes = () => {
     AnimeStructure[] | undefined
   > => {
     try {
-      dispatch(showLoadingActionCreator());
+      dispatch(showSkeletonActionCreator());
       const response = await axios.get<{ animes: AnimeStructure[] }>(
         `${apiUrl}anime`
       );
 
-      dispatch(hideLoadingActionCreator());
+      dispatch(hideSkeltonActionCreator());
 
       return response.data.animes;
     } catch (error) {
