@@ -1,29 +1,43 @@
 import styled from "styled-components";
 
-const LoaderStyled = styled.span`
-  transform: rotateZ(45deg);
-  perspective: 1000px;
-  border-radius: 50%;
-  width: 48px;
-  height: 48px;
-  color: #fff;
-  &:before,
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: inherit;
-    height: inherit;
+const LoaderStyled = styled.div`
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(42, 45, 65, 0.4);
+
+  .loader {
+    transform: rotateZ(45deg);
+    perspective: 1000px;
     border-radius: 50%;
-    transform: rotateX(70deg);
-    animation: 1s spin linear infinite;
-  }
-  &:after {
-    color: ${(props) => props.theme.color.quinary};
-    transform: rotateY(70deg);
-    animation-delay: 0.4s;
+    width: 48px;
+    height: 48px;
+    color: #fff;
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: inherit;
+      height: inherit;
+      border-radius: 50%;
+      transform: rotateX(70deg);
+      animation: 1s spin linear infinite;
+    }
+    &:after {
+      color: ${(props) => props.theme.color.quinary};
+      transform: rotateY(70deg);
+      animation-delay: 0.4s;
+    }
   }
 
   @keyframes rotate {

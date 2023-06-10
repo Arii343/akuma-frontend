@@ -1,4 +1,8 @@
 import LoaderStyled from "./LoaderStyled";
 
-const Loader = () => <LoaderStyled aria-label="loader" />;
+const Loader = () => (
+  <LoaderStyled>
+    <span className="loader" aria-label="loader" />
+  </LoaderStyled>
+);
 export default Loader;
