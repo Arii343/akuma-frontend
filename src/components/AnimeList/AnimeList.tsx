@@ -1,7 +1,7 @@
 import useAnimes from "../../hooks/useAnimes/useAnimes";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { deleteAnimeActionCreator } from "../../store/animes/animesSlice";
-import AnimeCard from "../AnimeCard /AnimeCard";
+import AnimeCard from "../AnimeCard/AnimeCard";
 import AnimeCardSkeleton from "../AnimeCardSkeleton/AnimeCardSkeleton";
 import AnimeListStyled from "./AnimeListStyled";
 
