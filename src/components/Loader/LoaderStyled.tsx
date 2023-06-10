@@ -34,7 +34,7 @@ const LoaderStyled = styled.div`
       animation: 1s spin linear infinite;
     }
     &:after {
-      color: ${(props) => props.theme.color.quinary};
+      color: ${(props) => props.theme.backgroundColor.denary};
       transform: rotateY(70deg);
       animation-delay: 0.4s;
     }
