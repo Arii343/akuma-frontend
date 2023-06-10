@@ -9,6 +9,7 @@ import {
 import { server } from "../../mocks/server";
 import { errorHandlers } from "../../mocks/handlers";
 import { vi } from "vitest";
+import { wrapWithStore } from "../../utils/testUtils";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -22,7 +23,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapWithStore });
 
       const token = await getUserToken(userCredentials);
 
@@ -42,7 +43,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapWithStore });
 
       await getUserToken(userCredentials);
 
@@ -68,7 +69,7 @@ describe("Given a useUser custom hook", () => {
         result: {
           current: { getUserToken },
         },
-      } = renderHook(() => useUser());
+      } = renderHook(() => useUser(), { wrapper: wrapWithStore });
 
       await getUserToken(userCredentials);
 
