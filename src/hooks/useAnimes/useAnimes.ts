@@ -45,9 +45,15 @@ const useAnimes = () => {
       };
 
       dispatch(showSpinnerActionCreator());
-      await axios.delete(`${apiUrl}anime/${id}`, configuration);
+
+      const response = await axios.delete(
+        `${apiUrl}anime/${id}`,
+        configuration
+      );
 
       dispatch(hideSpinnerActionCreator());
+
+      return response.status;
     } catch (error) {
       dispatch(hideSpinnerActionCreator());
     }
