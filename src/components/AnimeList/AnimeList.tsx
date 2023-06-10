@@ -7,6 +7,7 @@ import AnimeListStyled from "./AnimeListStyled";
 const AnimeList = (): React.ReactElement => {
   const animes = useAppSelector((state) => state.animes.animes);
   const isLoading = useAppSelector((state) => state.ui.isLoading);
+  const isLogged = useAppSelector((state) => state.user.isLogged);
   const dispatch = useAppDispatch();
 
   const handleDeleteAnime = (id: string) => {
@@ -24,6 +25,7 @@ const AnimeList = (): React.ReactElement => {
               id={anime.id}
               imageUrl={anime.image}
               title={anime.englishTitle}
+              showAdminView={isLogged}
               deleteAnime={handleDeleteAnime}
               key={anime.id}
             />

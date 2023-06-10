@@ -3,6 +3,7 @@ import { animesMock } from "../../mocks/animes/animesMocks";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import AnimeList from "./AnimeList";
 import userEvent from "@testing-library/user-event";
+import { loggedInUserMock } from "../../mocks/user/userMocks";
 
 describe("Given a AnimeList component", () => {
   describe("When it renders", () => {
@@ -31,6 +32,7 @@ describe("Given a AnimeList component", () => {
         animes: {
           animes: animesMock,
         },
+        user: loggedInUserMock,
       };
 
       renderWithProviders(wrapWithRouter(<AnimeList />), preloadedState);
