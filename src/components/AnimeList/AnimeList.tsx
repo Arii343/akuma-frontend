@@ -1,3 +1,4 @@
+import useAnimes from "../../hooks/useAnimes/useAnimes";
 import { useAppDispatch, useAppSelector } from "../../store";
 import { deleteAnimeActionCreator } from "../../store/animes/animesSlice";
 import AnimeCard from "../AnimeCard /AnimeCard";
@@ -9,9 +10,13 @@ const AnimeList = (): React.ReactElement => {
   const showSkeleton = useAppSelector((state) => state.ui.showSkeleton);
   const isLogged = useAppSelector((state) => state.user.isLogged);
   const dispatch = useAppDispatch();
+  const { deleteAnime } = useAnimes();
 
-  const handleDeleteAnime = (id: string) => {
-    dispatch(deleteAnimeActionCreator(id));
+  const handleDeleteAnime = async (id: string) => {
+    const isSuccess = await deleteAnime(id);
+    if (isSuccess) {
+      dispatch(deleteAnimeActionCreator(id));
+    }
   };
 
   return (
