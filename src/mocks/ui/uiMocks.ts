@@ -1,9 +1,21 @@
 import { UiStateStructure } from "../../store/ui/types";
 
-export const shownLoadingStateMock: UiStateStructure = {
-  isLoading: true,
+export const shownSkeletonStateMock: UiStateStructure = {
+  showSkeleton: true,
+  showSpinner: false,
 };
 
-export const hiddenLoadingStateMock: UiStateStructure = {
-  isLoading: false,
+export const hiddenSkeletonStateMock: UiStateStructure = {
+  showSkeleton: false,
+  showSpinner: false,
+};
+
+export const shownSpinnerStateMock: UiStateStructure = {
+  showSkeleton: false,
+  showSpinner: true,
+};
+
+export const hiddenSpinnerStateMock: UiStateStructure = {
+  showSkeleton: false,
+  showSpinner: false,
 };
