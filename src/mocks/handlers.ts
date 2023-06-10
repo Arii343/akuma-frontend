@@ -8,8 +8,13 @@ export const handlers = [
   rest.post(`${apiUrl}user/login`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ token: tokenMock }));
   }),
+
   rest.get(`${apiUrl}anime`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ animes: animesMock }));
+  }),
+
+  rest.delete(`${apiUrl}anime/:id`, (_req, res, ctx) => {
+    return res(ctx.status(200), ctx.json({ message: "Anime deleted" }));
   }),
 ];
 
@@ -30,5 +35,9 @@ export const errorHandlers = [
         message: "Internal server error",
       })
     );
+  }),
+
+  rest.delete(`${apiUrl}anime/:id`, (_req, res, ctx) => {
+    return res(ctx.status(404), ctx.json({ message: "Anime not found" }));
   }),
 ];

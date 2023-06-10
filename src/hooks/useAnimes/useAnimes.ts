@@ -1,16 +1,19 @@
 import axios from "axios";
 import { useCallback } from "react";
 import { AnimeStructure } from "../../store/animes/types";
-import { useAppDispatch } from "../../store";
+import { useAppDispatch, useAppSelector } from "../../store";
 import {
   hideSkeltonActionCreator,
+  hideSpinnerActionCreator,
   showSkeletonActionCreator,
+  showSpinnerActionCreator,
 } from "../../store/ui/uiSlice";
 import { useSnackbar } from "notistack";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const useAnimes = () => {
+  const token = useAppSelector((state) => state.user.token);
   const dispatch = useAppDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -33,8 +36,32 @@ const useAnimes = () => {
     }
   }, [dispatch, enqueueSnackbar]);
 
+  const deleteAnime = async (id: string) => {
+    try {
+      const configuration = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      dispatch(showSpinnerActionCreator());
+
+      const response = await axios.delete(
+        `${apiUrl}anime/${id}`,
+        configuration
+      );
+
+      dispatch(hideSpinnerActionCreator());
+
+      return response.status;
+    } catch (error) {
+      dispatch(hideSpinnerActionCreator());
+    }
+  };
+
   return {
     getAnimes,
+    deleteAnime,
   };
 };
 
