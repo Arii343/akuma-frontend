@@ -12,6 +12,7 @@ const deleteAnime = vi.fn();
 
 describe("Given a AnimeCard component", () => {
   describe("When it renders", () => {
+    const isLogged = false;
     test("Then it should show a 'One Piece' anime image", () => {
       renderWithProviders(
         wrapWithRouter(
@@ -19,6 +20,7 @@ describe("Given a AnimeCard component", () => {
             id={id}
             imageUrl={imageUrl}
             title={title}
+            showAdminView={isLogged}
             deleteAnime={deleteAnime}
           />
         )
@@ -36,6 +38,7 @@ describe("Given a AnimeCard component", () => {
             id={id}
             imageUrl={imageUrl}
             title={title}
+            showAdminView={isLogged}
             deleteAnime={deleteAnime}
           />
         )
@@ -45,14 +48,18 @@ describe("Given a AnimeCard component", () => {
 
       expect(animeTitle).toBeInTheDocument();
     });
+  });
 
+  describe("When it renders and the user is logged in", () => {
     test("Then it should show a delete 'One Piece' anime button", () => {
+      const isLogged = true;
       renderWithProviders(
         wrapWithRouter(
           <AnimeCard
             id={id}
             imageUrl={imageUrl}
             title={title}
+            showAdminView={isLogged}
             deleteAnime={deleteAnime}
           />
         )
@@ -66,14 +73,16 @@ describe("Given a AnimeCard component", () => {
     });
   });
 
-  describe("When it renders and the user clicks on delete button", () => {
-    test("The it should call the deleteAnime function with the 'One Piece' anime id", async () => {
+  describe("When it renders and the user is logged in and clicks on delete button", () => {
+    test("Then it should call the deleteAnime function with the 'One Piece' anime id", async () => {
+      const isLogged = true;
       renderWithProviders(
         wrapWithRouter(
           <AnimeCard
             id={id}
             imageUrl={imageUrl}
             title={title}
+            showAdminView={isLogged}
             deleteAnime={deleteAnime}
           />
         )
