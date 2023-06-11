@@ -52,7 +52,7 @@ const Navbar = (): React.ReactElement => {
         {isLogged ? (
           <>
             <li className="navbar-list__item">
-              <NavLink to={"/create"}>Create</NavLink>
+              <NavLink to={paths.createAnime}>Create</NavLink>
             </li>
             <li className="navbar-list__item">
               <Button
