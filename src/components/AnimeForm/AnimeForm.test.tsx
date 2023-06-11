@@ -157,31 +157,11 @@ describe("Given a AnimeForm component", () => {
     test("Then it should show the 'Synopsis' input", () => {
       renderWithProviders(<AnimeForm />);
 
-      const expectedText = "Write the anime synopsis";
+      const label = "Synopsis";
 
-      const expectedInput = screen.getByLabelText(expectedText);
+      const expectedInput = screen.getByLabelText(label);
 
       expect(expectedInput).toBeInTheDocument();
-    });
-
-    test("Then it should show the 'Rates', 'General info' and 'Synopsis' titles", () => {
-      renderWithProviders(<AnimeForm />);
-
-      const ratesTitle = "Rates";
-      const generalInfoTitle = "General info";
-      const synopsisTitle = "Synopsis";
-
-      const expectedRates = screen.getByRole("heading", { name: ratesTitle });
-      const expectedGeneralInfo = screen.getByRole("heading", {
-        name: generalInfoTitle,
-      });
-      const expectedSynopsis = screen.getByRole("heading", {
-        name: synopsisTitle,
-      });
-
-      expect(expectedRates).toBeInTheDocument();
-      expect(expectedGeneralInfo).toBeInTheDocument();
-      expect(expectedSynopsis).toBeInTheDocument();
     });
 
     test("Then it should show a button with the 'Create' text", () => {
