@@ -39,12 +39,6 @@ const AnimeFormStyled = styled.form`
     }
   }
 
-  .anime-form__title {
-    color: ${(props) => props.theme.color.primary};
-    font-size: ${(props) => props.theme.font.size.medium};
-    padding-top: 5px;
-  }
-
   .anime-form__input--textarea {
     font-family: inherit;
     height: 121px;
@@ -59,6 +53,7 @@ const AnimeFormStyled = styled.form`
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+    padding-top: 4px;
     font-size: ${(props) => props.theme.font.size.small};
   }
 `;

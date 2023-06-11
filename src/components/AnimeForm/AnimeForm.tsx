@@ -95,7 +95,6 @@ const AnimeForm = (): React.ReactElement => {
           required
         />
       </section>
-      <h2 className="anime-form__title">Rates</h2>
       <section className="anime-form__section">
         <label className="anime-form__label" htmlFor="score">
           Score
@@ -135,7 +134,6 @@ const AnimeForm = (): React.ReactElement => {
           required
         />
       </section>
-      <h2 className="anime-form__title">General info</h2>
       <section className="anime-form__section">
         <label className="anime-form__label" htmlFor="type">
           Type
@@ -201,14 +199,18 @@ const AnimeForm = (): React.ReactElement => {
           required
         />
       </section>
-      <h2 className="anime-form__title">Synopsis</h2>
-      <textarea
-        id="synopsis"
-        className="anime-form__input anime-form__input--textarea"
-        placeholder="ex With Tomura Shigaraki at its helm, the former Liberation Army is now known as the Paranormal Liberation Front. This organized criminal group poses an immense threat to the Hero Association..."
-        aria-label="Write the anime synopsis"
-        required
-      />
+      <section className="anime-form__section">
+        <label className="anime-form__label" htmlFor="synopsis">
+          Synopsis
+        </label>
+        <textarea
+          id="synopsis"
+          className="anime-form__input anime-form__input--textarea"
+          placeholder="ex With Tomura Shigaraki at its helm, the former Liberation Army is now known as the Paranormal Liberation Front. This organized criminal group poses an immense threat to the Hero Association..."
+          aria-label="Write the anime synopsis"
+          required
+        />
+      </section>
       <Button className="anime-form__button">Create</Button>
     </AnimeFormStyled>
   );
