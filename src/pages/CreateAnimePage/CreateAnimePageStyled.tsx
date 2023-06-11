@@ -5,6 +5,7 @@ const CreateAnimePageStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   .create-anime__title {
     color: ${(props) => props.theme.color.secondary};
