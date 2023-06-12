@@ -10,6 +10,7 @@ import { wrapWithStore } from "../../utils/testUtils";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
 import { vi } from "vitest";
+import snackBar from "notistack";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -34,10 +35,11 @@ describe("Given a useAnimes custom hook", () => {
     test("Then it should throw the 'An error has ocurred while loading anime' error", async () => {
       server.resetHandlers(...errorHandlers);
 
-      const snackBar = await import("notistack");
       snackBar.useSnackbar = vi
         .fn()
         .mockReturnValue({ enqueueSnackbar: vi.fn() });
+
+      const expectedMessage = "An error has ocurred while loading anime";
 
       const {
         result: {
@@ -48,7 +50,7 @@ describe("Given a useAnimes custom hook", () => {
       await getAnimes();
 
       expect(snackBar.useSnackbar().enqueueSnackbar).toHaveBeenCalledWith(
-        "An error has ocurred while loading anime",
+        expectedMessage,
         { variant: "error" }
       );
     });
@@ -102,5 +104,30 @@ describe("Given a useAnimes custom hook", () => {
 
       expect(newAnime).toStrictEqual(expectedAnime);
     });
+  });
+});
+
+describe("When the createAnime function is called and rejects", () => {
+  test("Then the error message 'Could not create the anime' should be shown to the user", async () => {
+    server.resetHandlers(...errorHandlers);
+
+    snackBar.useSnackbar = vi
+      .fn()
+      .mockReturnValue({ enqueueSnackbar: vi.fn() });
+
+    const expectedMessage = "Could not create the anime";
+
+    const {
+      result: {
+        current: { createAnime },
+      },
+    } = renderHook(() => useAnimes(), { wrapper: wrapWithStore });
+
+    await createAnime(animeMiraiNikkiFormParsedMock);
+
+    expect(snackBar.useSnackbar().enqueueSnackbar).toHaveBeenCalledWith(
+      expectedMessage,
+      { variant: "error" }
+    );
   });
 });

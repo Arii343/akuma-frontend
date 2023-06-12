@@ -14,9 +14,11 @@ const CreateAnimePage = (): React.ReactElement => {
 
   const handleCreateAnimeSubmit = async (newAnime: AnimeDataStructure) => {
     const createdAnime = await createAnime(newAnime);
-    dispatch(createAnimeActionCreator(createdAnime));
 
-    scrollTo(pageTitleRef);
+    if (createdAnime) {
+      dispatch(createAnimeActionCreator(createdAnime));
+      scrollTo(pageTitleRef);
+    }
   };
 
   return (
