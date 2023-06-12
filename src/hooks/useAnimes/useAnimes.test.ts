@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import useAnimes from "./useAnimes";
-import { animeMock, animesMock } from "../../mocks/animes/animesMocks";
+import { animeOnePieceMock, animesMock } from "../../mocks/animes/animesMocks";
 import { wrapWithStore } from "../../utils/testUtils";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
@@ -52,7 +52,7 @@ describe("Given a useAnimes custom hook", () => {
   describe("When deleteAnime function is called with an existing anime id", () => {
     test("Then it should return 200", async () => {
       const expectedStatus = 200;
-      const animeId = animeMock.id;
+      const animeId = animeOnePieceMock.id;
 
       const {
         result: {
@@ -70,7 +70,7 @@ describe("Given a useAnimes custom hook", () => {
     test("Then it should return undefined", async () => {
       server.resetHandlers(...errorHandlers);
       const expectedStatus = undefined;
-      const animeId = animeMock.id;
+      const animeId = animeOnePieceMock.id;
 
       const {
         result: {
