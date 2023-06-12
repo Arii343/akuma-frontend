@@ -1,6 +1,7 @@
-import { animesMock } from "../../mocks/animes/animesMocks";
+import { animesMock, newAnimeMock } from "../../mocks/animes/animesMocks";
 import {
   animesReducer,
+  createAnimeActionCreator,
   deleteAnimeActionCreator,
   loadAnimesActionCreator,
 } from "./animesSlice";
@@ -42,6 +43,28 @@ describe("Given a deleteAnime reducer", () => {
       };
 
       expect(newState).toStrictEqual(expectedState);
+    });
+  });
+});
+
+describe("Given a createAnime reducer", () => {
+  describe("When it receives a 'Mirai nikki' anime and a list of animes", () => {
+    test("Then it should return a list of animes with 'Mirai nikki' in it", () => {
+      const currentState: AnimeStateStructure = {
+        animes: animesMock,
+      };
+
+      const animeToCreate = newAnimeMock;
+
+      const expectedNewState: AnimeStateStructure = {
+        animes: [...animesMock, animeToCreate],
+      };
+
+      const action = createAnimeActionCreator(animeToCreate);
+
+      const newState = animesReducer(currentState, action);
+
+      expect(newState).toStrictEqual(expectedNewState);
     });
   });
 });

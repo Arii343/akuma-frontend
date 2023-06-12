@@ -24,11 +24,19 @@ const animesSlice = createSlice({
         (anime) => anime.id !== action.payload
       ),
     }),
+
+    createAnime: (
+      currentState: AnimeStateStructure,
+      action: PayloadAction<AnimeStructure>
+    ) => ({
+      animes: [...currentState.animes, action.payload],
+    }),
   },
 });
 
 export const {
   loadAnimes: loadAnimesActionCreator,
   deleteAnime: deleteAnimeActionCreator,
+  createAnime: createAnimeActionCreator,
 } = animesSlice.actions;
 export const animesReducer = animesSlice.reducer;
