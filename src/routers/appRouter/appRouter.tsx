@@ -8,6 +8,7 @@ import {
 } from "../lazyComponents/lazyComponents";
 import { paths } from "../paths/paths";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const routes: RouteObject[] = [
   {
@@ -35,9 +36,11 @@ const routes: RouteObject[] = [
       {
         path: paths.createAnime,
         element: (
-          <Suspense>
-            <LazyCreateAnimePage />
-          </Suspense>
+          <PrivateRoute>
+            <Suspense>
+              <LazyCreateAnimePage />
+            </Suspense>
+          </PrivateRoute>
         ),
       },
     ],
