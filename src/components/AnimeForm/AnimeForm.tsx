@@ -1,7 +1,65 @@
+import { useState } from "react";
 import Button from "../Button/Button";
 import AnimeFormStyled from "./AnimeFormStyled";
 
-const AnimeForm = (): React.ReactElement => {
+interface AnimeFormData {
+  englishTitle: string;
+  japaneseTitle: string;
+  releaseYear: string;
+  rating: string;
+  demographics: string;
+  genres: string;
+  image: string;
+  score: string;
+  rank: string;
+  popularity: string;
+  type: string;
+  source: string;
+  episodes: string;
+  status: string;
+  duration: string;
+  synopsis: string;
+}
+
+interface AnimeFormProps {
+  submitButtonText?: "Create" | "Save";
+}
+
+const AnimeForm = ({
+  submitButtonText = "Create",
+}: AnimeFormProps): React.ReactElement => {
+  const [animeForm, setAnimeForm] = useState<AnimeFormData>({
+    englishTitle: "",
+    japaneseTitle: "",
+    releaseYear: "",
+    rating: "",
+    demographics: "",
+    genres: "",
+    image: "",
+    score: "",
+    rank: "",
+    popularity: "",
+    type: "",
+    source: "",
+    episodes: "",
+    status: "",
+    duration: "",
+    synopsis: "",
+  });
+
+  const handleAnimeFormChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { value, id } = event.target;
+
+    setAnimeForm((animeForm) => ({
+      ...animeForm,
+      [id]: value,
+    }));
+  };
+
   return (
     <AnimeFormStyled className="anime-form">
       <section className="anime-form__section">
@@ -9,7 +67,9 @@ const AnimeForm = (): React.ReactElement => {
           English title
         </label>
         <input
+          value={animeForm.englishTitle}
           id="englishTitle"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex My Hero Academia Season 6"
@@ -22,7 +82,9 @@ const AnimeForm = (): React.ReactElement => {
           Japanese title
         </label>
         <input
+          value={animeForm.japaneseTitle}
           id="japaneseTitle"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 僕のヒーローアカデミア"
@@ -35,7 +97,9 @@ const AnimeForm = (): React.ReactElement => {
           Release year
         </label>
         <input
+          value={animeForm.releaseYear}
           id="releaseYear"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 2022"
@@ -48,7 +112,9 @@ const AnimeForm = (): React.ReactElement => {
           Rating
         </label>
         <input
+          value={animeForm.rating}
           id="rating"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex PG-13 - Teens 13 or older"
@@ -61,7 +127,9 @@ const AnimeForm = (): React.ReactElement => {
           Demographics
         </label>
         <input
+          value={animeForm.demographics}
           id="demographics"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex Shounen, Seinen"
@@ -74,7 +142,9 @@ const AnimeForm = (): React.ReactElement => {
           Genres
         </label>
         <input
+          value={animeForm.genres}
           id="genres"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex Action, Drama"
@@ -87,7 +157,9 @@ const AnimeForm = (): React.ReactElement => {
           Image
         </label>
         <input
+          value={animeForm.image}
           id="image"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex https://anime-image.png"
@@ -100,7 +172,9 @@ const AnimeForm = (): React.ReactElement => {
           Score
         </label>
         <input
+          value={animeForm.score}
           id="score"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 8.37"
@@ -113,7 +187,9 @@ const AnimeForm = (): React.ReactElement => {
           Rank
         </label>
         <input
+          value={animeForm.rank}
           id="rank"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 194"
@@ -126,7 +202,9 @@ const AnimeForm = (): React.ReactElement => {
           Popularity
         </label>
         <input
+          value={animeForm.popularity}
           id="popularity"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 380"
@@ -139,7 +217,9 @@ const AnimeForm = (): React.ReactElement => {
           Type
         </label>
         <input
+          value={animeForm.type}
           id="type"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex TV"
@@ -152,7 +232,9 @@ const AnimeForm = (): React.ReactElement => {
           Source
         </label>
         <input
+          value={animeForm.source}
           id="source"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex Manga"
@@ -165,7 +247,9 @@ const AnimeForm = (): React.ReactElement => {
           Episodes
         </label>
         <input
+          value={animeForm.episodes}
           id="episodes"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 25"
@@ -178,7 +262,9 @@ const AnimeForm = (): React.ReactElement => {
           Status
         </label>
         <input
+          value={animeForm.status}
           id="status"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex Finished Airing"
@@ -191,7 +277,9 @@ const AnimeForm = (): React.ReactElement => {
           Duration
         </label>
         <input
+          value={animeForm.duration}
           id="duration"
+          onChange={handleAnimeFormChange}
           className="anime-form__input"
           type="text"
           placeholder="ex 23 min"
@@ -204,14 +292,16 @@ const AnimeForm = (): React.ReactElement => {
           Synopsis
         </label>
         <textarea
+          value={animeForm.synopsis}
           id="synopsis"
+          onChange={handleAnimeFormChange}
           className="anime-form__input anime-form__input--textarea"
           placeholder="ex With Tomura Shigaraki at its helm, the former Liberation Army is now known as the Paranormal Liberation Front. This organized criminal group poses an immense threat to the Hero Association..."
           aria-label="Write the anime synopsis"
           required
         />
       </section>
-      <Button className="anime-form__button">Create</Button>
+      <Button className="anime-form__button">{submitButtonText}</Button>
     </AnimeFormStyled>
   );
 };
