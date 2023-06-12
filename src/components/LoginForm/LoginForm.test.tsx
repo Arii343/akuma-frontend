@@ -9,17 +9,17 @@ beforeEach(() => {
 });
 
 describe("Given a LoginForm component", () => {
-  const actionOnClick = vi.fn();
+  const onSubmit = vi.fn();
   describe("When it renders", () => {
     test("Then it should show a email input", () => {
-      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+      renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
       const inputEmail = screen.getByRole("textbox", { name: "email input" });
       expect(inputEmail).toBeInTheDocument();
     });
 
     test("Then it should show a password input", () => {
-      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+      renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
       const expectedPlaceholderText = "Password";
 
@@ -30,7 +30,7 @@ describe("Given a LoginForm component", () => {
     });
 
     test("Then it should show a login button", () => {
-      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+      renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
       const loginButton = screen.getByRole("button", { name: "Login" });
       expect(loginButton).toBeInTheDocument();
@@ -39,7 +39,7 @@ describe("Given a LoginForm component", () => {
 
   describe("When the user types 'ariadna@gmail.com' in the email input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+      renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
       const inputEmail: HTMLInputElement = screen.getByRole("textbox", {
         name: "email input",
@@ -57,7 +57,7 @@ describe("Given a LoginForm component", () => {
       const emailText = "ariadna@hotmail.com";
       const passwordText = "ari343";
 
-      renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+      renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
       const expectedPlaceholderText = "Password";
 
@@ -74,11 +74,11 @@ describe("Given a LoginForm component", () => {
     });
 
     describe("When it renders and the button is clicked", () => {
-      test("Then it should call the function actionOnClick", async () => {
+      test("Then it should call the function onSubmit", async () => {
         const emailText = "ariadna@hotmail.com";
         const passwordText = "ari343";
 
-        renderWithProviders(<LoginForm handleOnSubmit={actionOnClick} />);
+        renderWithProviders(<LoginForm onSubmit={onSubmit} />);
 
         const expectedPlaceholderText = "Password";
 
@@ -93,7 +93,7 @@ describe("Given a LoginForm component", () => {
 
         await userEvent.click(loginButton);
 
-        expect(actionOnClick).toHaveBeenCalled();
+        expect(onSubmit).toHaveBeenCalled();
       });
     });
   });

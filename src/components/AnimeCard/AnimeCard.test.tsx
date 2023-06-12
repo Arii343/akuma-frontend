@@ -1,13 +1,13 @@
 import { screen } from "@testing-library/react";
-import { animeMock } from "../../mocks/animes/animesMocks";
+import { animeOnePieceMock } from "../../mocks/animes/animesMocks";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import AnimeCard from "./AnimeCard";
 import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 
-const imageUrl = animeMock.image;
-const title = animeMock.englishTitle;
-const id = animeMock.id;
+const imageUrl = animeOnePieceMock.image;
+const title = animeOnePieceMock.englishTitle;
+const id = animeOnePieceMock.id;
 const deleteAnime = vi.fn();
 
 describe("Given a AnimeCard component", () => {

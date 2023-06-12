@@ -1,4 +1,7 @@
-export const animesMock = [
+import { AnimeFormData } from "../../components/AnimeForm/AnimeForm";
+import { AnimeDataStructure, AnimeStructure } from "../../store/animes/types";
+
+export const animesMock: AnimeStructure[] = [
   {
     id: "1",
     englishTitle: "D.N.Angel",
@@ -191,7 +194,7 @@ export const animesMock = [
   },
 ];
 
-export const animeMock = {
+export const animeOnePieceMock: AnimeStructure = {
   id: "5",
   englishTitle: "One Piece",
   japaneseTitle: "僕のヒーローアカデミア",
@@ -211,7 +214,7 @@ export const animeMock = {
   synopsis: "A very good anime of a guy and a pistol.",
 };
 
-export const newAnimeMock = {
+export const newAnimeMiraiNikkiMock: AnimeStructure = {
   id: "11",
   englishTitle: "Mirai nikki",
   japaneseTitle: "僕のヒーローアカデミア",
@@ -226,6 +229,44 @@ export const newAnimeMock = {
   type: "TV",
   source: "Manga",
   episodes: 24,
+  status: "On air",
+  duration: "23 min",
+  synopsis: "A very good anime of a guy and a pistol.",
+};
+
+export const animeMiraiNikkiFormParsedMock: AnimeDataStructure = {
+  englishTitle: "Mirai nikki",
+  japaneseTitle: "僕のヒーローアカデミア",
+  releaseYear: 2022,
+  rating: "13 years old",
+  demographics: ["Shounen"],
+  genres: ["Drama", "Action"],
+  image: "https://cdn.myanimelist.net/images/anime/1346/119505l.webp",
+  score: 8.95,
+  rank: 80,
+  popularity: 230,
+  type: "TV",
+  source: "Manga",
+  episodes: 24,
+  status: "On air",
+  duration: "23 min",
+  synopsis: "A very good anime of a guy and a pistol.",
+};
+
+export const animeMiraiNikkiFormDataMock: AnimeFormData = {
+  englishTitle: "Mirai nikki",
+  japaneseTitle: "僕のヒーローアカデミア",
+  releaseYear: "2022",
+  rating: "13 years old",
+  demographics: "Shounen",
+  genres: "Drama, Action",
+  image: "https://cdn.myanimelist.net/images/anime/1346/119505l.webp",
+  score: "8.95",
+  rank: "80",
+  popularity: "230",
+  type: "TV",
+  source: "Manga",
+  episodes: "24",
   status: "On air",
   duration: "23 min",
   synopsis: "A very good anime of a guy and a pistol.",

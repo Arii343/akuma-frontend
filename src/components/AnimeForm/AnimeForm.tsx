@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Button from "../Button/Button";
 import AnimeFormStyled from "./AnimeFormStyled";
+import { AnimeDataStructure } from "../../store/animes/types";
 
-interface AnimeFormData {
+export interface AnimeFormData {
   englishTitle: string;
   japaneseTitle: string;
   releaseYear: string;
@@ -22,30 +23,38 @@ interface AnimeFormData {
 }
 
 interface AnimeFormProps {
+  initialAnimeFormState?: AnimeFormData;
   submitButtonText?: "Create" | "Save";
+  onSubmit: (animeForm: AnimeDataStructure) => void;
 }
 
+const initialAnimeData: AnimeFormData = {
+  englishTitle: "",
+  japaneseTitle: "",
+  releaseYear: "",
+  rating: "",
+  demographics: "",
+  genres: "",
+  image: "",
+  score: "",
+  rank: "",
+  popularity: "",
+  type: "",
+  source: "",
+  episodes: "",
+  status: "",
+  duration: "",
+  synopsis: "",
+};
+
 const AnimeForm = ({
+  initialAnimeFormState = initialAnimeData,
   submitButtonText = "Create",
+  onSubmit,
 }: AnimeFormProps): React.ReactElement => {
-  const [animeForm, setAnimeForm] = useState<AnimeFormData>({
-    englishTitle: "",
-    japaneseTitle: "",
-    releaseYear: "",
-    rating: "",
-    demographics: "",
-    genres: "",
-    image: "",
-    score: "",
-    rank: "",
-    popularity: "",
-    type: "",
-    source: "",
-    episodes: "",
-    status: "",
-    duration: "",
-    synopsis: "",
-  });
+  const [animeForm, setAnimeForm] = useState<AnimeFormData>(
+    initialAnimeFormState
+  );
 
   const handleAnimeFormChange = (
     event:
@@ -60,8 +69,32 @@ const AnimeForm = ({
     }));
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const animeData: AnimeDataStructure = {
+      ...animeForm,
+      releaseYear: Number(animeForm.releaseYear),
+      score: Number(animeForm.score),
+      rank: Number(animeForm.rank),
+      popularity: Number(animeForm.popularity),
+      episodes: Number(animeForm.episodes),
+      genres: animeForm.genres.split(",").map((genre) => genre.trim()),
+      demographics: animeForm.demographics
+        .split(",")
+        .map((demographic) => demographic.trim()),
+    };
+
+    onSubmit(animeData);
+    setAnimeForm(initialAnimeData);
+  };
+
   return (
-    <AnimeFormStyled className="anime-form">
+    <AnimeFormStyled
+      className="anime-form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <section className="anime-form__section">
         <label className="anime-form__label" htmlFor="englishTitle">
           English title
@@ -301,7 +334,9 @@ const AnimeForm = ({
           required
         />
       </section>
-      <Button className="anime-form__button">{submitButtonText}</Button>
+      <Button className="anime-form__button" type="submit">
+        {submitButtonText}
+      </Button>
     </AnimeFormStyled>
   );
 };

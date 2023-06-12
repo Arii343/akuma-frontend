@@ -1,4 +1,7 @@
-import { animesMock, newAnimeMock } from "../../mocks/animes/animesMocks";
+import {
+  animesMock,
+  newAnimeMiraiNikkiMock,
+} from "../../mocks/animes/animesMocks";
 import {
   animesReducer,
   createAnimeActionCreator,
@@ -54,7 +57,7 @@ describe("Given a createAnime reducer", () => {
         animes: animesMock,
       };
 
-      const animeToCreate = newAnimeMock;
+      const animeToCreate = newAnimeMiraiNikkiMock;
 
       const expectedNewState: AnimeStateStructure = {
         animes: [...animesMock, animeToCreate],

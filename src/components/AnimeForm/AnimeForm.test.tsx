@@ -2,11 +2,17 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../../utils/testUtils";
 import AnimeForm from "./AnimeForm";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import {
+  animeMiraiNikkiFormDataMock,
+  animeMiraiNikkiFormParsedMock,
+} from "../../mocks/animes/animesMocks";
 
 describe("Given a AnimeForm component", () => {
+  const onSubmit = vi.fn();
   describe("When it renders", () => {
     test("Then it should show the 'English title' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "English title";
 
@@ -16,7 +22,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Japanese title' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Japanese title";
 
@@ -26,7 +32,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Release year' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Release year";
 
@@ -36,7 +42,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Rating' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Rating";
 
@@ -46,7 +52,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Demographics' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Demographics";
 
@@ -56,7 +62,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Genres' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Genres";
 
@@ -66,7 +72,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Image' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Image";
 
@@ -76,7 +82,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Score' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Score";
 
@@ -86,7 +92,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Rank' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Rank";
 
@@ -96,7 +102,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Popularity' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Popularity";
 
@@ -106,7 +112,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Type' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Type";
 
@@ -116,7 +122,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Source' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Source";
 
@@ -126,7 +132,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Episodes' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Episodes";
 
@@ -136,7 +142,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Status' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Status";
 
@@ -146,7 +152,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Duration' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Duration";
 
@@ -156,7 +162,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show the 'Synopsis' input", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const label = "Synopsis";
 
@@ -166,7 +172,7 @@ describe("Given a AnimeForm component", () => {
     });
 
     test("Then it should show a button with the 'Create' text", () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const expectedButtonText = "Create";
 
@@ -178,7 +184,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'My Hero Academia Season 6' in the englishTitle input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputEnglishTitle: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime english title",
@@ -193,7 +199,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '僕のヒーローアカデミア' in the japaneseTitle input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputJapaneseTitle: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime japanese title",
@@ -208,7 +214,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '2022' in the releaseYear input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputReleaseYear: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime release year",
@@ -223,7 +229,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'PG-13 - Teens 13 or older' in the rating input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputRating: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime rating",
@@ -238,7 +244,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'Shounen, Seinen' in the demographics input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputDemographics: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the demographics of the anime",
@@ -253,7 +259,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'Action, Drama' in the genres input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputGenres: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime genres",
@@ -268,7 +274,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'https://anime-image.png' in the image input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputImage: HTMLInputElement = screen.getByRole("textbox", {
         name: "Insert anime image url",
@@ -283,7 +289,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '8.37' in the score input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputScore: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime score out of ten",
@@ -298,7 +304,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '194' in the rank input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputRank: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime rank",
@@ -313,7 +319,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '380' in the pupularity input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputPopularity: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime popularity",
@@ -328,7 +334,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'TV' in the type input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputType: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime type",
@@ -343,7 +349,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'Mange' in the source input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputSource: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime source",
@@ -358,7 +364,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '25' in th episodes input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputEpisodes: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime episodes",
@@ -373,7 +379,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'Finished Airing' in the status input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputStatus: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime status",
@@ -388,7 +394,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types '23 min' in the duration input", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputDuration: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime duration",
@@ -403,7 +409,7 @@ describe("Given a AnimeForm component", () => {
 
   describe("When the user types 'With Tomura Shigaraki at its helm, the former...' in the synopsis textarea", () => {
     test("Then it should show that text inside the input", async () => {
-      renderWithProviders(<AnimeForm />);
+      renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
       const inputSynopsis: HTMLInputElement = screen.getByRole("textbox", {
         name: "Write the anime synopsis",
@@ -413,6 +419,30 @@ describe("Given a AnimeForm component", () => {
       await userEvent.type(inputSynopsis, expectedText);
 
       expect(inputSynopsis).toHaveValue(expectedText);
+    });
+  });
+
+  describe("When the user click on 'Create' button with all the fields fill", () => {
+    test("Then the form should submit", async () => {
+      const initialAnimeFormState = animeMiraiNikkiFormDataMock;
+      const expectedSubmittedAnimeFormData = animeMiraiNikkiFormParsedMock;
+
+      renderWithProviders(
+        <AnimeForm
+          onSubmit={onSubmit}
+          initialAnimeFormState={initialAnimeFormState}
+        />
+      );
+
+      const expectedButtonText = "Create";
+
+      const button = screen.getByRole("button", {
+        name: expectedButtonText,
+      });
+
+      await userEvent.click(button);
+
+      expect(onSubmit).toHaveBeenCalledWith(expectedSubmittedAnimeFormData);
     });
   });
 });
