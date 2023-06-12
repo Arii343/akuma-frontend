@@ -3,6 +3,7 @@ import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import CreateAnimePage from "./CreateAnimePage";
 import userEvent from "@testing-library/user-event";
 import { animeMiraiNikkiFormDataMock } from "../../mocks/animes/animesMocks";
+import { vi } from "vitest";
 
 describe("Given a CreateAnimePage page", () => {
   describe("When it renders", () => {
@@ -19,6 +20,8 @@ describe("Given a CreateAnimePage page", () => {
 
   describe("When it renders and the user creates 'Mirai Nikki' anime", () => {
     test("Then it should should clear anime form fields", async () => {
+      vi.useRealTimers();
+
       renderWithProviders(wrapWithRouter(<CreateAnimePage />));
 
       const animeMiraiNiki = animeMiraiNikkiFormDataMock;
@@ -58,6 +61,7 @@ describe("Given a CreateAnimePage page", () => {
       const genresInput = screen.getByLabelText(
         genresLabel
       ) as HTMLInputElement;
+
       const imageInput = screen.getByLabelText(imageLabel) as HTMLInputElement;
       const scoreInput = screen.getByLabelText(scoreLabel) as HTMLInputElement;
       const rankInput = screen.getByLabelText(rankLabel) as HTMLInputElement;
