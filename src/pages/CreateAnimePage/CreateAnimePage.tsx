@@ -5,13 +5,17 @@ import { createAnimeActionCreator } from "../../store/animes/animesSlice";
 import { AnimeDataStructure } from "../../store/animes/types";
 import CreateAnimePageStyled from "./CreateAnimePageStyled";
 import scrollTo from "../../utils/componentUtils";
+import useAnimes from "../../hooks/useAnimes/useAnimes";
 
 const CreateAnimePage = (): React.ReactElement => {
+  const { createAnime } = useAnimes();
   const dispatch = useAppDispatch();
   const pageTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const handleCreateAnimeSubmit = (newAnime: AnimeDataStructure) => {
-    dispatch(createAnimeActionCreator({ ...newAnime, id: "_provisional_id" }));
+  const handleCreateAnimeSubmit = async (newAnime: AnimeDataStructure) => {
+    const createdAnime = await createAnime(newAnime);
+    dispatch(createAnimeActionCreator(createdAnime));
+
     scrollTo(pageTitleRef);
   };
 

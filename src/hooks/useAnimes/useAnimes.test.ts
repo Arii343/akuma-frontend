@@ -1,6 +1,11 @@
 import { renderHook } from "@testing-library/react";
 import useAnimes from "./useAnimes";
-import { animeOnePieceMock, animesMock } from "../../mocks/animes/animesMocks";
+import {
+  animeMiraiNikkiFormParsedMock,
+  animeOnePieceMock,
+  animesMock,
+  newAnimeMiraiNikkiMock,
+} from "../../mocks/animes/animesMocks";
 import { wrapWithStore } from "../../utils/testUtils";
 import { errorHandlers } from "../../mocks/handlers";
 import { server } from "../../mocks/server";
@@ -81,6 +86,21 @@ describe("Given a useAnimes custom hook", () => {
       const status = await deleteAnime(animeId);
 
       expect(status).toStrictEqual(expectedStatus);
+    });
+  });
+
+  describe("When the createAnime function is called and receives 'Mirai Nikki' anime data", () => {
+    test("Then it should return the 'Mirai Nikki' anime data", async () => {
+      const expectedAnime = newAnimeMiraiNikkiMock;
+      const {
+        result: {
+          current: { createAnime },
+        },
+      } = renderHook(() => useAnimes(), { wrapper: wrapWithStore });
+
+      const newAnime = await createAnime(animeMiraiNikkiFormParsedMock);
+
+      expect(newAnime).toStrictEqual(expectedAnime);
     });
   });
 });

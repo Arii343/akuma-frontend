@@ -1,6 +1,6 @@
 import { rest } from "msw";
 import { tokenMock } from "./user/userMocks";
-import { animesMock } from "./animes/animesMocks";
+import { animesMock, newAnimeMiraiNikkiMock } from "./animes/animesMocks";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -15,6 +15,15 @@ export const handlers = [
 
   rest.delete(`${apiUrl}anime/:id`, (_req, res, ctx) => {
     return res(ctx.status(200), ctx.json({ message: "Anime deleted" }));
+  }),
+
+  rest.post(`${apiUrl}anime`, (_req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json({
+        anime: newAnimeMiraiNikkiMock,
+      })
+    );
   }),
 ];
 
