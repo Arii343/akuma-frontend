@@ -7,6 +7,7 @@ import {
   hideSpinnerActionCreator,
   showSpinnerActionCreator,
 } from "../../store/ui/uiSlice";
+import { feedbackMessage } from "../../utils/feedbackMessage";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -24,12 +25,12 @@ const useUser = () => {
         );
 
         dispatch(hideSpinnerActionCreator());
-        enqueueSnackbar("You have successfully logged in", { variant: "info" });
+        enqueueSnackbar(feedbackMessage.successLogin, { variant: "info" });
 
         return response.data.token;
       } catch (error) {
         dispatch(hideSpinnerActionCreator());
-        enqueueSnackbar("Wrong credentials", { variant: "error" });
+        enqueueSnackbar(feedbackMessage.errorLogin, { variant: "error" });
       }
     },
     [dispatch, enqueueSnackbar]

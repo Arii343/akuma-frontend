@@ -9,6 +9,7 @@ import {
   showSpinnerActionCreator,
 } from "../../store/ui/uiSlice";
 import { useSnackbar } from "notistack";
+import { feedbackMessage } from "../../utils/feedbackMessage";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -30,7 +31,7 @@ const useAnimes = () => {
 
       return response.data.animes;
     } catch (error) {
-      enqueueSnackbar("An error has ocurred while loading anime", {
+      enqueueSnackbar(feedbackMessage.errorLoadAnime, {
         variant: "error",
       });
     }
@@ -53,13 +54,13 @@ const useAnimes = () => {
         );
 
         dispatch(hideSpinnerActionCreator());
-        enqueueSnackbar("Anime deleted", {
+        enqueueSnackbar(feedbackMessage.successDeleteAnime, {
           variant: "success",
         });
         return response.status;
       } catch (error) {
         dispatch(hideSpinnerActionCreator());
-        enqueueSnackbar("Could not delete the anime", {
+        enqueueSnackbar(feedbackMessage.errorDeleteAnime, {
           variant: "error",
         });
       }
@@ -68,23 +69,31 @@ const useAnimes = () => {
   );
 
   const createAnime = async (newAnime: AnimeDataStructure) => {
-    const configuration = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
+    try {
+      const configuration = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
-    dispatch(showSpinnerActionCreator());
+      dispatch(showSpinnerActionCreator());
 
-    const response = await axios.post(
-      `${apiUrl}anime`,
-      newAnime,
-      configuration
-    );
+      const response = await axios.post(
+        `${apiUrl}anime`,
+        newAnime,
+        configuration
+      );
 
-    dispatch(hideSpinnerActionCreator());
-
-    return response.data.anime;
+      dispatch(hideSpinnerActionCreator());
+      enqueueSnackbar(feedbackMessage.successCreateAnime, {
+        variant: "success",
+      });
+      return response.data.anime;
+    } catch (error) {
+      enqueueSnackbar(feedbackMessage.errorCreateAnime, {
+        variant: "error",
+      });
+    }
   };
 
   return {
