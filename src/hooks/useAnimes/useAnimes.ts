@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useCallback } from "react";
-import { AnimeStructure } from "../../store/animes/types";
+import { AnimeDataStructure, AnimeStructure } from "../../store/animes/types";
 import { useAppDispatch, useAppSelector } from "../../store";
 import {
   hideSkeltonActionCreator,
@@ -67,9 +67,30 @@ const useAnimes = () => {
     [dispatch, enqueueSnackbar, token]
   );
 
+  const createAnime = async (newAnime: AnimeDataStructure) => {
+    const configuration = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    dispatch(showSpinnerActionCreator());
+
+    const response = await axios.post(
+      `${apiUrl}anime`,
+      newAnime,
+      configuration
+    );
+
+    dispatch(hideSpinnerActionCreator());
+
+    return response.data.anime;
+  };
+
   return {
     getAnimes,
     deleteAnime,
+    createAnime,
   };
 };
 
