@@ -7,10 +7,10 @@ interface LoginFormData {
   password: string;
 }
 interface LoginFormProps {
-  handleOnSubmit: (formData: LoginFormData) => void;
+  onSubmit: (formData: LoginFormData) => void;
 }
 
-const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
+const LoginForm = ({ onSubmit }: LoginFormProps): React.ReactElement => {
   const [loginForm, setLoginForm] = useState<LoginFormData>({
     email: "",
     password: "",
@@ -27,13 +27,17 @@ const LoginForm = ({ handleOnSubmit }: LoginFormProps): React.ReactElement => {
     }));
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleOnSubmit(loginForm);
+    onSubmit(loginForm);
   };
 
   return (
-    <LoginFormStyled className="login-form" onSubmit={onSubmit}>
+    <LoginFormStyled
+      className="login-form"
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <label htmlFor="email" className="login-form__label">
         <img src="./img/email.svg" alt="email icon" width={28} height={28} />
         <input

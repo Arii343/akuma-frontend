@@ -13,7 +13,7 @@ const LoginPage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleOnSubmit = async (userCredentials: UserCredentials) => {
+  const handleLoginSubmit = async (userCredentials: UserCredentials) => {
     const token = await getUserToken(userCredentials);
 
     if (token) {
@@ -33,7 +33,7 @@ const LoginPage = (): React.ReactElement => {
     <>
       <LoginPageStyled className="login">
         <h1 className="login__title">Login</h1>
-        <LoginForm handleOnSubmit={handleOnSubmit} />
+        <LoginForm onSubmit={handleLoginSubmit} />
       </LoginPageStyled>
     </>
   );

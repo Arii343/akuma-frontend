@@ -10,7 +10,7 @@ const CreateAnimePage = (): React.ReactElement => {
   const dispatch = useAppDispatch();
   const pageTitleRef = useRef<HTMLHeadingElement>(null);
 
-  const handleSubmit = (newAnime: AnimeDataStructure) => {
+  const handleCreateAnimeSubmit = (newAnime: AnimeDataStructure) => {
     dispatch(createAnimeActionCreator({ ...newAnime, id: "_provisional_id" }));
     scrollTo(pageTitleRef);
   };
@@ -20,7 +20,7 @@ const CreateAnimePage = (): React.ReactElement => {
       <h1 className="create-anime__title" ref={pageTitleRef}>
         Create Anime
       </h1>
-      <AnimeForm onSubmit={handleSubmit} />
+      <AnimeForm onSubmit={handleCreateAnimeSubmit} />
     </CreateAnimePageStyled>
   );
 };
