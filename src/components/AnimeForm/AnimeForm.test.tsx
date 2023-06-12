@@ -3,6 +3,10 @@ import { renderWithProviders } from "../../utils/testUtils";
 import AnimeForm from "./AnimeForm";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import {
+  animeMiraiNikkiFormDataMock,
+  animeMiraiNikkiFormParsedMock,
+} from "../../mocks/animes/animesMocks";
 
 describe("Given a AnimeForm component", () => {
   const onSubmit = vi.fn();
@@ -415,6 +419,30 @@ describe("Given a AnimeForm component", () => {
       await userEvent.type(inputSynopsis, expectedText);
 
       expect(inputSynopsis).toHaveValue(expectedText);
+    });
+  });
+
+  describe("When the user click on 'Create' button with all the fields fill", () => {
+    test("Then the form should submit", async () => {
+      const initialAnimeFormState = animeMiraiNikkiFormDataMock;
+      const expectedSubmittedAnimeFormData = animeMiraiNikkiFormParsedMock;
+
+      renderWithProviders(
+        <AnimeForm
+          onSubmit={onSubmit}
+          initialAnimeFormState={initialAnimeFormState}
+        />
+      );
+
+      const expectedButtonText = "Create";
+
+      const button = screen.getByRole("button", {
+        name: expectedButtonText,
+      });
+
+      await userEvent.click(button);
+
+      expect(onSubmit).toHaveBeenCalledWith(expectedSubmittedAnimeFormData);
     });
   });
 });
