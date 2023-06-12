@@ -49,4 +49,13 @@ export const errorHandlers = [
   rest.delete(`${apiUrl}anime/:id`, (_req, res, ctx) => {
     return res(ctx.status(404), ctx.json({ message: "Anime not found" }));
   }),
+
+  rest.post(`${apiUrl}anime`, (_req, res, ctx) => {
+    return res(
+      ctx.status(400),
+      ctx.json({
+        message: "Validation failed",
+      })
+    );
+  }),
 ];
