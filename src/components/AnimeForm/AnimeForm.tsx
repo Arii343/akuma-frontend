@@ -3,7 +3,7 @@ import Button from "../Button/Button";
 import AnimeFormStyled from "./AnimeFormStyled";
 import { AnimeDataStructure } from "../../store/animes/types";
 
-interface AnimeFormData {
+export interface AnimeFormData {
   englishTitle: string;
   japaneseTitle: string;
   releaseYear: string;
@@ -23,34 +23,38 @@ interface AnimeFormData {
 }
 
 interface AnimeFormProps {
+  initialAnimeFormState?: AnimeFormData;
   submitButtonText?: "Create" | "Save";
   onSubmit: (animeForm: AnimeDataStructure) => void;
 }
 
+const initialAnimeData: AnimeFormData = {
+  englishTitle: "",
+  japaneseTitle: "",
+  releaseYear: "",
+  rating: "",
+  demographics: "",
+  genres: "",
+  image: "",
+  score: "",
+  rank: "",
+  popularity: "",
+  type: "",
+  source: "",
+  episodes: "",
+  status: "",
+  duration: "",
+  synopsis: "",
+};
+
 const AnimeForm = ({
+  initialAnimeFormState = initialAnimeData,
   submitButtonText = "Create",
   onSubmit,
 }: AnimeFormProps): React.ReactElement => {
-  const initialAnimeData = {
-    englishTitle: "",
-    japaneseTitle: "",
-    releaseYear: "",
-    rating: "",
-    demographics: "",
-    genres: "",
-    image: "",
-    score: "",
-    rank: "",
-    popularity: "",
-    type: "",
-    source: "",
-    episodes: "",
-    status: "",
-    duration: "",
-    synopsis: "",
-  };
-
-  const [animeForm, setAnimeForm] = useState<AnimeFormData>(initialAnimeData);
+  const [animeForm, setAnimeForm] = useState<AnimeFormData>(
+    initialAnimeFormState
+  );
 
   const handleAnimeFormChange = (
     event:
