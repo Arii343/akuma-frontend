@@ -256,6 +256,25 @@ export const animeMiraiNikkiFormParsedMock: AnimeDataStructure = {
 export const animeMiraiNikkiFormDataMock: AnimeFormData = {
   englishTitle: "Mirai nikki",
   japaneseTitle: "僕のヒーローアカデミア",
+  releaseYear: 2022,
+  rating: "13 years old",
+  demographics: "Shounen",
+  genres: "Drama, Action",
+  image: "https://cdn.myanimelist.net/images/anime/1346/119505l.webp",
+  score: 8.95,
+  rank: 80,
+  popularity: 230,
+  type: "TV",
+  source: "Manga",
+  episodes: 24,
+  status: "On air",
+  duration: "23 min",
+  synopsis: "A very good anime of a guy and a pistol.",
+};
+
+export const animeMiraiNikkiUserEventMock = {
+  englishTitle: "Mirai nikki",
+  japaneseTitle: "僕のヒーローアカデミア",
   releaseYear: "2022",
   rating: "13 years old",
   demographics: "Shounen",

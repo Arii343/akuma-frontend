@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders, wrapWithRouter } from "../../utils/testUtils";
 import CreateAnimePage from "./CreateAnimePage";
 import userEvent from "@testing-library/user-event";
-import { animeMiraiNikkiFormDataMock } from "../../mocks/animes/animesMocks";
+import { animeMiraiNikkiUserEventMock } from "../../mocks/animes/animesMocks";
 import { vi } from "vitest";
 
 describe("Given a CreateAnimePage page", () => {
@@ -23,8 +23,6 @@ describe("Given a CreateAnimePage page", () => {
       vi.useRealTimers();
 
       renderWithProviders(wrapWithRouter(<CreateAnimePage />));
-
-      const animeMiraiNiki = animeMiraiNikkiFormDataMock;
 
       const englishTitleLabel = "English title";
       const japaneseTitleLabel = "Japanese title";
@@ -85,22 +83,46 @@ describe("Given a CreateAnimePage page", () => {
         synopsisLabel
       ) as HTMLInputElement;
 
-      await userEvent.type(englishTitleInput, animeMiraiNiki.englishTitle);
-      await userEvent.type(japaneseTitleInput, animeMiraiNiki.japaneseTitle);
-      await userEvent.type(releaseYearInput, animeMiraiNiki.releaseYear);
-      await userEvent.type(ratingInput, animeMiraiNiki.rating);
-      await userEvent.type(demographicsInput, animeMiraiNiki.demographics);
-      await userEvent.type(genresInput, animeMiraiNiki.genres);
-      await userEvent.type(imageInput, animeMiraiNiki.image);
-      await userEvent.type(scoreInput, animeMiraiNiki.score);
-      await userEvent.type(rankInput, animeMiraiNiki.rank);
-      await userEvent.type(popularityInput, animeMiraiNiki.popularity);
-      await userEvent.type(typeInput, animeMiraiNiki.type);
-      await userEvent.type(sourceInput, animeMiraiNiki.source);
-      await userEvent.type(episodesInput, animeMiraiNiki.episodes);
-      await userEvent.type(statusInput, animeMiraiNiki.status);
-      await userEvent.type(durationInput, animeMiraiNiki.duration);
-      await userEvent.type(synopsisInput, animeMiraiNiki.synopsis);
+      await userEvent.type(
+        englishTitleInput,
+        animeMiraiNikkiUserEventMock.englishTitle
+      );
+      await userEvent.type(
+        japaneseTitleInput,
+        animeMiraiNikkiUserEventMock.japaneseTitle
+      );
+      await userEvent.type(
+        releaseYearInput,
+        animeMiraiNikkiUserEventMock.releaseYear
+      );
+      await userEvent.type(ratingInput, animeMiraiNikkiUserEventMock.rating);
+      await userEvent.type(
+        demographicsInput,
+        animeMiraiNikkiUserEventMock.demographics
+      );
+      await userEvent.type(genresInput, animeMiraiNikkiUserEventMock.genres);
+      await userEvent.type(imageInput, animeMiraiNikkiUserEventMock.image);
+      await userEvent.type(scoreInput, animeMiraiNikkiUserEventMock.score);
+      await userEvent.type(rankInput, animeMiraiNikkiUserEventMock.rank);
+      await userEvent.type(
+        popularityInput,
+        animeMiraiNikkiUserEventMock.popularity
+      );
+      await userEvent.type(typeInput, animeMiraiNikkiUserEventMock.type);
+      await userEvent.type(sourceInput, animeMiraiNikkiUserEventMock.source);
+      await userEvent.type(
+        episodesInput,
+        animeMiraiNikkiUserEventMock.episodes
+      );
+      await userEvent.type(statusInput, animeMiraiNikkiUserEventMock.status);
+      await userEvent.type(
+        durationInput,
+        animeMiraiNikkiUserEventMock.duration
+      );
+      await userEvent.type(
+        synopsisInput,
+        animeMiraiNikkiUserEventMock.synopsis
+      );
 
       const expectedSubmitButtonText = "Create";
 
@@ -112,16 +134,17 @@ describe("Given a CreateAnimePage page", () => {
 
       expect(englishTitleInput).toHaveValue("");
       expect(japaneseTitleInput).toHaveValue("");
-      expect(releaseYearInput).toHaveValue("");
+      expect(releaseYearInput).toHaveValue(undefined);
       expect(ratingInput).toHaveValue("");
       expect(demographicsInput).toHaveValue("");
       expect(genresInput).toHaveValue("");
       expect(imageInput).toHaveValue("");
-      expect(scoreInput).toHaveValue("");
-      expect(rankInput).toHaveValue("");
+      expect(scoreInput).toHaveValue(undefined);
+      expect(rankInput).toHaveValue(undefined);
+      expect(popularityInput).toHaveValue(undefined);
       expect(typeInput).toHaveValue("");
       expect(sourceInput).toHaveValue("");
-      expect(episodesInput).toHaveValue("");
+      expect(episodesInput).toHaveValue(undefined);
       expect(statusInput).toHaveValue("");
       expect(durationInput).toHaveValue("");
       expect(synopsisInput).toHaveValue("");
