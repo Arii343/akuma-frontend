@@ -216,14 +216,16 @@ describe("Given a AnimeForm component", () => {
     test("Then it should show that text inside the input", async () => {
       renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
-      const inputReleaseYear: HTMLInputElement = screen.getByRole("textbox", {
-        name: "Write the anime release year",
-      });
+      const label = "Release year";
+
+      const inputReleaseYear = screen.getByLabelText(label);
+
       const expectedText = "2022";
+      const expectedValue = 2022;
 
       await userEvent.type(inputReleaseYear, expectedText);
 
-      expect(inputReleaseYear).toHaveValue(expectedText);
+      expect(inputReleaseYear).toHaveValue(expectedValue);
     });
   });
 
@@ -291,14 +293,16 @@ describe("Given a AnimeForm component", () => {
     test("Then it should show that text inside the input", async () => {
       renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
-      const inputScore: HTMLInputElement = screen.getByRole("textbox", {
-        name: "Write the anime score out of ten",
-      });
+      const label = "Score";
+
+      const inputScore = screen.getByLabelText(label);
+
       const expectedText = "8.37";
+      const expectedValue = 8.37;
 
       await userEvent.type(inputScore, expectedText);
 
-      expect(inputScore).toHaveValue(expectedText);
+      expect(inputScore).toHaveValue(expectedValue);
     });
   });
 
@@ -306,29 +310,32 @@ describe("Given a AnimeForm component", () => {
     test("Then it should show that text inside the input", async () => {
       renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
-      const inputRank: HTMLInputElement = screen.getByRole("textbox", {
-        name: "Write the anime rank",
-      });
+      const label = "Rank";
+
+      const inputRank = screen.getByLabelText(label);
+
       const expectedText = "194";
+      const expectedValue = 194;
 
       await userEvent.type(inputRank, expectedText);
 
-      expect(inputRank).toHaveValue(expectedText);
+      expect(inputRank).toHaveValue(expectedValue);
     });
   });
 
   describe("When the user types '380' in the pupularity input", () => {
     test("Then it should show that text inside the input", async () => {
       renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
+      const label = "Popularity";
 
-      const inputPopularity: HTMLInputElement = screen.getByRole("textbox", {
-        name: "Write the anime popularity",
-      });
+      const inputPopularity = screen.getByLabelText(label);
+
       const expectedText = "380";
+      const expectedValue = 380;
 
       await userEvent.type(inputPopularity, expectedText);
 
-      expect(inputPopularity).toHaveValue(expectedText);
+      expect(inputPopularity).toHaveValue(expectedValue);
     });
   });
 
@@ -366,14 +373,16 @@ describe("Given a AnimeForm component", () => {
     test("Then it should show that text inside the input", async () => {
       renderWithProviders(<AnimeForm onSubmit={onSubmit} />);
 
-      const inputEpisodes: HTMLInputElement = screen.getByRole("textbox", {
-        name: "Write the anime episodes",
-      });
+      const label = "Episodes";
+
+      const inputEpisodes = screen.getByLabelText(label);
+
       const expectedText = "25";
+      const expectedValue = 25;
 
       await userEvent.type(inputEpisodes, expectedText);
 
-      expect(inputEpisodes).toHaveValue(expectedText);
+      expect(inputEpisodes).toHaveValue(expectedValue);
     });
   });
 

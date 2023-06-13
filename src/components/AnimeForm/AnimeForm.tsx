@@ -6,17 +6,17 @@ import { AnimeDataStructure } from "../../store/animes/types";
 export interface AnimeFormData {
   englishTitle: string;
   japaneseTitle: string;
-  releaseYear: string;
+  releaseYear: number | undefined;
   rating: string;
   demographics: string;
   genres: string;
   image: string;
-  score: string;
-  rank: string;
-  popularity: string;
+  score: number | undefined;
+  rank: number | undefined;
+  popularity: number | undefined;
   type: string;
   source: string;
-  episodes: string;
+  episodes: number | undefined;
   status: string;
   duration: string;
   synopsis: string;
@@ -31,17 +31,17 @@ interface AnimeFormProps {
 const initialAnimeData: AnimeFormData = {
   englishTitle: "",
   japaneseTitle: "",
-  releaseYear: "",
+  releaseYear: undefined,
   rating: "",
   demographics: "",
   genres: "",
   image: "",
-  score: "",
-  rank: "",
-  popularity: "",
+  score: undefined,
+  rank: undefined,
+  popularity: undefined,
   type: "",
   source: "",
-  episodes: "",
+  episodes: undefined,
   status: "",
   duration: "",
   synopsis: "",
@@ -134,7 +134,7 @@ const AnimeForm = ({
           id="releaseYear"
           onChange={handleAnimeFormChange}
           className="anime-form__input"
-          type="text"
+          type="number"
           placeholder="ex 2022"
           aria-label="Write the anime release year"
           required
@@ -209,7 +209,7 @@ const AnimeForm = ({
           id="score"
           onChange={handleAnimeFormChange}
           className="anime-form__input"
-          type="text"
+          type="number"
           placeholder="ex 8.37"
           aria-label="Write the anime score out of ten"
           required
@@ -224,7 +224,7 @@ const AnimeForm = ({
           id="rank"
           onChange={handleAnimeFormChange}
           className="anime-form__input"
-          type="text"
+          type="number"
           placeholder="ex 194"
           aria-label="Write the anime rank"
           required
@@ -239,7 +239,7 @@ const AnimeForm = ({
           id="popularity"
           onChange={handleAnimeFormChange}
           className="anime-form__input"
-          type="text"
+          type="number"
           placeholder="ex 380"
           aria-label="Write the anime popularity"
           required
@@ -284,7 +284,7 @@ const AnimeForm = ({
           id="episodes"
           onChange={handleAnimeFormChange}
           className="anime-form__input"
-          type="text"
+          type="number"
           placeholder="ex 25"
           aria-label="Write the anime episodes"
           required
