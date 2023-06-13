@@ -68,33 +68,37 @@ const useAnimes = () => {
     [dispatch, enqueueSnackbar, token]
   );
 
-  const createAnime = async (newAnime: AnimeDataStructure) => {
-    try {
-      const configuration = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+  const createAnime = useCallback(
+    async (newAnime: AnimeDataStructure) => {
+      try {
+        const configuration = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        };
 
-      dispatch(showSpinnerActionCreator());
+        dispatch(showSpinnerActionCreator());
 
-      const response = await axios.post(
-        `${apiUrl}anime`,
-        newAnime,
-        configuration
-      );
+        const response = await axios.post(
+          `${apiUrl}anime`,
+          newAnime,
+          configuration
+        );
 
-      dispatch(hideSpinnerActionCreator());
-      enqueueSnackbar(feedbackMessage.successCreateAnime, {
-        variant: "success",
-      });
-      return response.data.anime;
-    } catch (error) {
-      enqueueSnackbar(feedbackMessage.errorCreateAnime, {
-        variant: "error",
-      });
-    }
-  };
+        dispatch(hideSpinnerActionCreator());
+        enqueueSnackbar(feedbackMessage.successCreateAnime, {
+          variant: "success",
+        });
+        return response.data.anime;
+      } catch (error) {
+        dispatch(hideSpinnerActionCreator());
+        enqueueSnackbar(feedbackMessage.errorCreateAnime, {
+          variant: "error",
+        });
+      }
+    },
+    [dispatch, enqueueSnackbar, token]
+  );
 
   return {
     getAnimes,
