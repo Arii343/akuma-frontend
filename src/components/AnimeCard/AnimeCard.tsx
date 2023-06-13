@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import Button from "../Button/Button";
 import AnimeCardStyled from "./AnimeCardStyled";
 
@@ -22,7 +23,7 @@ const AnimeCard = ({
 
   return (
     <AnimeCardStyled className="anime-card" aria-label={`${title} anime card`}>
-      <img
+      <LazyLoadImage
         src={imageUrl}
         alt={`Anime ${title}`}
         className="anime-card__image"
@@ -35,7 +36,12 @@ const AnimeCard = ({
           ariaLabel={`Delete ${title} anime`}
           className="anime-card__button anime-card__button--delete"
         >
-          <img src="./img/delete.svg" alt="trash icon" width={32} height={36} />
+          <LazyLoadImage
+            src="./img/delete.svg"
+            alt="trash icon"
+            width={32}
+            height={36}
+          />
         </Button>
       )}
       <h2 className="anime-card__title">{title}</h2>
