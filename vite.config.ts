@@ -23,8 +23,6 @@ export default defineConfig({
         "src/main.tsx",
         "src/store/index.ts",
         "src/styles/theme/styled.d.ts",
-        "src/routers/**",
-        "src/components/App/App.tsx",
       ],
     },
   },
