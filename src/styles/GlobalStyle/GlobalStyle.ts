@@ -8,7 +8,11 @@ const GlobalStyle = createGlobalStyle`
 }
 
 html {
+@font-face {
   font-family: ${(props) => props.theme.font.fontFamily}, sans-serif;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;500;600;700;800'),
+}
 }
 
 body,
