@@ -15,21 +15,19 @@ describe("Given a Navbar component", () => {
     });
   });
 
-  describe("When it renders and the user is not logged in", () => {
-    describe("When menu button is click", () => {
-      test("Then it should show a link Home and Login", async () => {
-        renderWithProviders(wrapWithRouter(<Navbar />));
+  describe("When it renders and the user is not logged in and burger menu button is click", () => {
+    test("Then it should show a link Home and Login", async () => {
+      renderWithProviders(wrapWithRouter(<Navbar />));
 
-        const burgerMenuButton = screen.getByRole("button");
+      const burgerMenuButton = screen.getByRole("button");
 
-        await userEvent.click(burgerMenuButton);
+      await userEvent.click(burgerMenuButton);
 
-        const homelink = screen.getByRole("link", { name: "Home" });
-        const loginlink = screen.getByRole("link", { name: "Login" });
+      const homelink = screen.getByRole("link", { name: "Home" });
+      const loginlink = screen.getByRole("link", { name: "Login" });
 
-        expect(homelink).toBeInTheDocument();
-        expect(loginlink).toBeInTheDocument();
-      });
+      expect(homelink).toBeInTheDocument();
+      expect(loginlink).toBeInTheDocument();
     });
   });
 
