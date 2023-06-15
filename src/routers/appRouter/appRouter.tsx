@@ -2,19 +2,23 @@ import { RouteObject, createBrowserRouter } from "react-router-dom";
 import App from "../../components/App/App";
 import { Suspense } from "react";
 import {
+  LaztNotFoundPage,
   LazyCreateAnimePage,
   LazyHomePage,
   LazyLoginPage,
 } from "../lazyComponents/lazyComponents";
 import { paths } from "../paths/paths";
-import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const routes: RouteObject[] = [
   {
     path: "/",
     element: <App />,
-    errorElement: <NotFoundPage />,
+    errorElement: (
+      <Suspense>
+        <LaztNotFoundPage />
+      </Suspense>
+    ),
     children: [
       {
         index: true,
