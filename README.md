@@ -40,7 +40,7 @@ Admin view:
 
 ## Setup
 
-To get started with the あ kuma application, follow these steps:
+To get started with the あkuma application, follow these steps:
 
 1. Clone the repository to your local machine.
 2. Install the dependencies by running the command `npm install`.
